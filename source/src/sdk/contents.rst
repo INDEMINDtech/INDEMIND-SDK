@@ -1,6 +1,6 @@
 ﻿.. _sdk:
 
-INDEMIND SDK 安装
+SDK 安装
 =============
 
 .. toctree::

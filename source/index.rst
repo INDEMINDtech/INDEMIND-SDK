@@ -13,6 +13,7 @@ INDEMIND双目视觉惯性模组用户手册
    src/ModuleInfo/contents
    src/about SDK/contents
    src/sdk/contents
+   src/gujianshengji/contents
    src/chajian/contents
    src/shujudiaoqu/contents
    src/biaoding/contents
