@@ -5,5 +5,5 @@
 
 .. toctree::
 
-   guyuanSDK
+   gujiansdk
    shengjijiaocheng
