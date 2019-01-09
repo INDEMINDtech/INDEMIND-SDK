@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OKVIS 如何整合 &mdash; INDEMIND SDK 1.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> INDEMIND SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ModuleInfo/contents.html">INDEMIND双目视觉惯性模组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about SDK/contents.html">INDEMIND SDK 说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sdk/contents.html">INDEMIND SDK 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chajian/contents.html">插件调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujudiaoqu/contents.html">数据获取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../biaoding/contents.html">SDK系统标定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozusheding/contents.html">模组设定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents.html">SLAM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujufenxi/contents.html">数据采集软件说明</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">INDEMIND SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>OKVIS 如何整合</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/src/SLAM/okvis.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="slam-okvis">
+<span id="id1"></span><h1><a class="reference external" href="https://github.com/ethz-asl/okvis">OKVIS</a> 如何整合<a class="headerlink" href="#slam-okvis" title="永久链接至标题">¶</a></h1>
+<div class="section" id="mynt-eye-okvis">
+<h2>在 MYNT® EYE 上运行 OKVIS ，请依照这些步骤：<a class="headerlink" href="#mynt-eye-okvis" title="永久链接至标题">¶</a></h2>
+<ol class="arabic simple">
+<li>下载 <a class="reference external" href="https://github.com/slightech/MYNT-EYE-S-SDK.git">MYNT-EYE-S-SDK</a> 并安装。</li>
+<li>安装依赖，按照原始 OKVIS 步骤安装 MYNT-EYE-OKVIS-Sample 。</li>
+<li>更新相机参数到 <code class="docutils literal notranslate"><span class="pre">&lt;OKVIS&gt;/config/config_mynteye.yaml</span></code>。</li>
+<li>在 MYNT® EYE 上运行 OKVIS 。</li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h2>安装 MYNT® EYE OKVIS<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>首先安装原始 OKVIS 及依赖：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone -b mynteye-s https://github.com/slightech/MYNT-EYE-OKVIS-Sample.git
+mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ..
+make -j4
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>获取相机校准参数<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>通过 <a class="reference external" href="https://github.com/slightech/MYNT-EYE-S-SDK.git">MYNT-EYE-S-SDK</a> API 的 <code class="docutils literal notranslate"><span class="pre">GetIntrinsics()</span></code> 函数和 <code class="docutils literal notranslate"><span class="pre">GetExtrinsics()</span></code> 函数，可以获得当前工作设备的图像校准参数：</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">cd</span> MYNT-EYE-S-SDK
+./samples/_output/bin/tutorials/get_img_params
+</pre></div>
+</div>
+<p>这时，可以获得针孔模型下的 <code class="docutils literal notranslate"><span class="pre">distortion_parameters</span></code> 和 <code class="docutils literal notranslate"><span class="pre">projection_parameters</span></code> 参数，然后在 <a class="reference external" href="https://github.com/slightech/MYNT-EYE-OKVIS-Sample/blob/mynteye-s/config/config_mynteye.yaml">这里</a> 更新。</p>
+</div>
+<div class="section" id="id6">
+<h2>运行 MYNT® EYE OKVIS<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>在 <code class="docutils literal notranslate"><span class="pre">MYNT-EYE-OKVIS-Sample/build</span></code> 中运行 <code class="docutils literal notranslate"><span class="pre">okvis_app_mynteye_s</span></code> :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> MYNT-EYE-OKVIS-Sample/build
+./okvis_app_mynteye_s ../config/config_mynteye.yaml
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, INDMEIND SDK
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

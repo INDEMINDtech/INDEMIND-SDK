@@ -1,0 +1,219 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>写入图像标定参数 &mdash; INDEMIND SDK 1.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> INDEMIND SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">写入图像标定参数</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">INDEMIND SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>写入图像标定参数</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/File/data/write_img_params.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="write-img-params">
+<span id="id1"></span><h1>写入图像标定参数<a class="headerlink" href="#write-img-params" title="永久链接至标题">¶</a></h1>
+<p>SDK 提供了写入图像标定参数的工具 <code class="docutils literal notranslate"><span class="pre">img_params_writer</span></code> 。工具详情可见 <a class="reference external" href="https://github.com/slightech/MYNT-EYE-S-SDK/tree/master/tools">tools/README.md</a> 。</p>
+<p>有关如何获取，请阅读 <a class="reference internal" href="get_img_params.html#get-img-params"><span class="std std-ref">获取图像标定参数</span></a> 。此参数会用于计算纠正、视差等。</p>
+<p>参考运行命令：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./tools/_output/bin/writer/img_params_writer tools/writer/config/img.params
+
+<span class="c1"># Windows</span>
+.<span class="se">\t</span>ools<span class="se">\_</span>output<span class="se">\b</span>in<span class="se">\w</span>riter<span class="se">\i</span>mg_params_writer.bat tools<span class="se">\w</span>riter<span class="se">\c</span>onfig<span class="se">\i</span>mg.params
+</pre></div>
+</div>
+<p>其中， <a class="reference external" href="https://github.com/slightech/MYNT-EYE-S-SDK/blob/master/tools/writer/config/img.params">tools/writer/config/img.params</a> 是参数文件路径。如果你自己标定了参数，可以编辑此文件，然后执行上述命令写入设备。</p>
+<div class="admonition tip">
+<p class="first admonition-title">小技巧</p>
+<p class="last">旧 SDK 提供的标定参数文件 <code class="docutils literal notranslate"><span class="pre">SN*.conf</span></code> 也可用此工具写入设备。</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">请不要随意覆写参数。另外 <code class="docutils literal notranslate"><span class="pre">save_all_infos</span></code> 工具可帮你备份参数。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, INDMEIND SDK
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

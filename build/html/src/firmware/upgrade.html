@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>固件如何进行升级 &mdash; INDEMIND SDK 1.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="从 1.x 换到 2.x" href="from_v1.html" />
+    <link rel="prev" title="固件与 SDK 适配性" href="applicable.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> INDEMIND SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ModuleInfo/contents.html">INDEMIND双目视觉惯性模组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sdk/contents.html">INDEMIND SDK 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about SDK/contents.html">INDEMIND SDK 说明</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="contents.html">MYNT® EYE 固件</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="applicable.html">固件与 SDK 适配性</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">固件如何进行升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="from_v1.html">从 1.x 换到 2.x</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data/contents.html">MYNT® EYE 数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../control/contents.html">MYNT® EYE 控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../log/contents.html">运行日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrapper/contents.html">封装接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analytics/contents.html">数据分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../slam/contents.html">SLAM</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">INDEMIND SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="contents.html">MYNT® EYE 固件</a> &raquo;</li>
+        
+      <li>固件如何进行升级</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/src/firmware/upgrade.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="firmware-upgrade">
+<span id="id1"></span><h1>固件如何进行升级<a class="headerlink" href="#firmware-upgrade" title="永久链接至标题">¶</a></h1>
+<p>固件升级，需要使用我们提供的固件升级程序：MYNT EYE TOOL。</p>
+<p>固件及MYNT EYE TOOL的安装包，都在 <a class="reference external" href="http://doc.myntai.com/mynteye/s/download">MYNTEYE_BOX</a> 的 <code class="docutils literal notranslate"><span class="pre">Firmwares</span></code> 目录内。文件结构如下：</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Firmwares/
+├─Checksum.txt                 # file checksum
+├─MYNTEYE_S_2.0.0_rc0.img      # firmware
+├─...
+└─setup.zip                    # MYNTEYE TOOL zip
+</pre></div>
+</div>
+<p>固件升级程序，目前仅支持 Windows ，所以需要你在 Windows 下进行操作。步骤如下：</p>
+<div class="section" id="id2">
+<h2>下载准备<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>下载并解压 <code class="docutils literal notranslate"><span class="pre">setup.zip</span></code>。</li>
+<li>下载固件，如 <code class="docutils literal notranslate"><span class="pre">MYNTEYE_S_2.0.0_rc0.img</span></code> 。<ul>
+<li>请见 <a class="reference internal" href="applicable.html#firmware-applicable"><span class="std std-ref">固件与 SDK 适配性</span></a> 选择适合当前 SDK 版本的固件。</li>
+<li>请见 <code class="docutils literal notranslate"><span class="pre">Checksum.txt</span></code> 找到下载固件的校验码，如下获取并比对：<ul>
+<li>命令提示符（CMD）里运行 <code class="docutils literal notranslate"><span class="pre">certutil</span> <span class="pre">-hashfile</span> <span class="pre">&lt;*.img&gt;</span> <span class="pre">MD5</span></code> 。</li>
+<li>校验码不正确的话，说明下载有误，请重新下载！</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="mynt-eye-tool">
+<h2>安装MYNT EYE TOOL<a class="headerlink" href="#mynt-eye-tool" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>双击 <code class="docutils literal notranslate"><span class="pre">setup.msi</span></code> 安装固件升级程序。</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>升级固件<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>USB3.0 口插上 MYNT® EYE 设备。</li>
+<li>打开MYNT EYE TOOL，选择 <code class="docutils literal notranslate"><span class="pre">Options/FirmwareUpdate</span></code> 。</li>
+</ul>
+<img alt="src\firmware\../../images/firmware_update_option.png" src="src\firmware\../../images/firmware_update_option.png" />
+<ul class="simple">
+<li>点击 <code class="docutils literal notranslate"><span class="pre">Update</span></code> 。</li>
+</ul>
+<a class="reference internal image-reference" href="src\firmware\../../images/firmware_update.png"><img alt="src\firmware\../../images/firmware_update.png" src="src\firmware\../../images/firmware_update.png" style="width: 60%;" /></a>
+<ul class="simple">
+<li>弹出警告对话框，直接 <code class="docutils literal notranslate"><span class="pre">确定</span></code> 即可。<ul>
+<li>由于该操作会擦除固件，所以弹出警告。详情见 README 。<ul>
+<li>通常在升级过程中，MYNT EYE TOOL会自动安装驱动。</li>
+<li>如果升级遇到问题，参考 README 解决。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a class="reference internal image-reference" href="src\firmware\../../images/firmware_update_warning.png"><img alt="src\firmware\../../images/firmware_update_warning.png" src="src\firmware\../../images/firmware_update_warning.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="src\firmware\../../images/firmware_update_dir.png"><img alt="src\firmware\../../images/firmware_update_dir.png" src="src\firmware\../../images/firmware_update_dir.png" style="width: 60%;" /></a>
+<ul class="simple">
+<li>在打开的文件选择框里，选择要升级的固件，开始升级。</li>
+</ul>
+<img alt="src\firmware\../../images/firmware_update_select.png" src="src\firmware\../../images/firmware_update_select.png" />
+<ul class="simple">
+<li>升级完成后，状态变为 <code class="docutils literal notranslate"><span class="pre">Succeeded</span></code> 。</li>
+</ul>
+<a class="reference internal image-reference" href="src\firmware\../../images/firmware_update_success.png"><img alt="src\firmware\../../images/firmware_update_success.png" src="src\firmware\../../images/firmware_update_success.png" style="width: 60%;" /></a>
+<ul class="simple">
+<li>关闭MYNT EYE TOOL，结束。</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">如果在设备管理器中同时找不到MYNT图像设备、 <code class="docutils literal notranslate"><span class="pre">WestBridge_driver</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">Cypress</span> <span class="pre">USB</span> <span class="pre">BootLoader</span></code> 则尝试换一台电脑执行以上操作。如果还是不能升级成功，请及时联系我们。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>手动更新驱动<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>如果应用提示您升级失败，则可能是自动安装驱动失败，您可以尝试手动安装驱动然后重新升级。以下为手动安装驱动的步骤。</li>
+<li>打开设备管理器，找到 <code class="docutils literal notranslate"><span class="pre">WestBridge_driver</span></code> 设备，然后右键更新驱动，选择 <code class="docutils literal notranslate"><span class="pre">[应用安装目录]\WestBridge_driver\[对应系统文件夹](win7以上选择wlh)\[系统对应位数]</span></code> 。</li>
+</ul>
+<img alt="src\firmware\../../images/firmware_update_westbridge.png" src="src\firmware\../../images/firmware_update_westbridge.png" />
+<ul class="simple">
+<li>以win 10 64位默认安装路径为例，需要选择的文件夹为 <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\slightech\MYNT</span> <span class="pre">EYE</span> <span class="pre">Camera</span> <span class="pre">Tool\wlh\x64</span></code> 。</li>
+<li>安装驱动成功之后，可以在设备管理器中找到 <code class="docutils literal notranslate"><span class="pre">Cypress</span> <span class="pre">USB</span> <span class="pre">BootLoader</span></code> 设备。</li>
+</ul>
+<img alt="src\firmware\../../images/firmware_update_cypressUSB.png" src="src\firmware\../../images/firmware_update_cypressUSB.png" />
+<ul class="simple">
+<li>然后拔插摄像头，再次打开该应用进行升级。</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">固件升级后，初次打开 MYNT® EYE 设备时，请静置 3 秒，其会有一个零漂补偿过程。或者，请主动调用控制接口 <code class="docutils literal notranslate"><span class="pre">RunOptionAction(Option::ZERO_DRIFT_CALIBRATION)</span></code> 来进行零漂补偿。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="from_v1.html" class="btn btn-neutral float-right" title="从 1.x 换到 2.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="applicable.html" class="btn btn-neutral" title="固件与 SDK 适配性" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, INDMEIND SDK
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

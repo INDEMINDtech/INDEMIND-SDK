@@ -1,0 +1,242 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>高精度Vi-SLAM &mdash; INDEMIND SDK 1.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="数据采集软件说明" href="../shujufenxi/contents.html" />
+    <link rel="prev" title="SLAM" href="contents.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> INDEMIND SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ModuleInfo/contents.html">INDEMIND双目视觉惯性模组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about SDK/contents.html">INDEMIND SDK 说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sdk/contents.html">INDEMIND SDK 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chajian/contents.html">插件调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujudiaoqu/contents.html">数据获取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../biaoding/contents.html">SDK系统标定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozusheding/contents.html">模组设定</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="contents.html">SLAM</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">高精度Vi-SLAM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../shujufenxi/contents.html">数据采集软件说明</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">INDEMIND SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="contents.html">SLAM</a> &raquo;</li>
+        
+      <li>高精度Vi-SLAM</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/src/SLAM/Vi-SLAM.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vi-slam">
+<span id="slam-vins"></span><h1>高精度Vi-SLAM<a class="headerlink" href="#vi-slam" title="永久链接至标题">¶</a></h1>
+<p>SLAM (Simultaneous Localization and Mapping)，即时定位与地图构建。SDK 提供的 Vi-SLAM 包含有前端特征提取，匹配，后端优化，闭环、建图和重定位功能。</p>
+<p>Vi-SLAM 支持 Windows 及 Linux 平台，有效的节约算法开发周期及成本，让开发者可以 迅速调试及部署，直接应用于机器人、无人机、AGV、AR/VR 等领域。</p>
+<p>Vi-SLAM 工作过程中的特征点匹配显示状态控制在文件“slam_imp.yaml”中， displayImages: true 表示打开特征点匹配显示，displayImages: false 表示关闭特征点匹配显示， 该状态默认开启。</p>
+<div class="section" id="id1">
+<h2>Vi-SLAM开启运行<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">MRCONFIG</span> <span class="n">config</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+<span class="n">config</span><span class="p">.</span><span class="n">bSlam</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">//true 开启 SLAM,false 不开启 SLAM</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Vi-SLAM关闭<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>当运行 SDK，但是不需要 SDK 自带 SLAM 运行时，将 MRCONFIG 结构体中的 bSlam 设置 为 false。</p>
+</div>
+<div class="section" id="demo">
+<h2>效果Demo示意<a class="headerlink" href="#demo" title="永久链接至标题">¶</a></h2>
+<img alt="../../_images/SDK_20.png" src="../../_images/SDK_20.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../shujufenxi/contents.html" class="btn btn-neutral float-right" title="数据采集软件说明" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="contents.html" class="btn btn-neutral" title="SLAM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, INDMEIND SDK
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

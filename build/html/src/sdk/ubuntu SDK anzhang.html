@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ubuntu SDK安装 &mdash; INDEMIND SDK 1.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="插件调用" href="../chajian/contents.html" />
+    <link rel="prev" title="Windows SDK安装" href="Windows SDK anzhuang.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> INDEMIND SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ModuleInfo/contents.html">INDEMIND双目视觉惯性模组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about SDK/contents.html">INDEMIND SDK 说明</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="contents.html">INDEMIND SDK 安装</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pingtaizhichi.html">平台支持</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Windows SDK anzhuang.html">Windows SDK安装</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ubuntu SDK安装</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chajian/contents.html">插件调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujudiaoqu/contents.html">数据获取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../biaoding/contents.html">SDK系统标定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozusheding/contents.html">模组设定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SLAM/contents.html">SLAM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujufenxi/contents.html">数据采集软件说明</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">INDEMIND SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="contents.html">INDEMIND SDK 安装</a> &raquo;</li>
+        
+      <li>Ubuntu SDK安装</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/src/sdk/ubuntu SDK anzhang.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ubuntu-sdk">
+<span id="sdk-ubuntu-sdk-anzhang"></span><h1>Ubuntu SDK安装<a class="headerlink" href="#ubuntu-sdk" title="永久链接至标题">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">安装必须硬件和软件
+需要显卡Geforce GTX 1050 以上，并且把显卡驱动安装好，CUDA版本9.0。没有GPU，如深度解算等功能无法正常运行。</p>
+</div>
+<div class="section" id="id1">
+<h2>程序下载<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="admonition tip">
+<p class="first admonition-title">小技巧</p>
+<p class="last">下载地址：
+<a class="reference external" href="https://github.com/indemind/SDK-Linux">https://github.com/indemind/SDK-Linux</a></p>
+</div>
+<p>下载完解压出以下文件：</p>
+<p>SDK主要包含：demo，doc，include、lib四个文件夹。</p>
+<p>demo文件夹下放置的是DEMO程序；</p>
+<p>doc文件夹下放置的是说明文档；</p>
+<p>include文件夹下面放置的是需要用到的头文件；</p>
+<p>lib包括Ubuntu 1604和Ubuntu 1804系统库文件，库文件夹下放置的是所依赖的各部分的链接文件.so与.a文件以及配置所用的.yaml与.json文件；</p>
+<img alt="../../_images/SDK_12.png" src="../../_images/SDK_12.png" />
+</div>
+<div class="section" id="demo">
+<h2>编译Demo<a class="headerlink" href="#demo" title="永久链接至标题">¶</a></h2>
+<div class="admonition tip">
+<p class="first admonition-title">小技巧</p>
+<p class="last">编译前的准备</p>
+</div>
+<p>a）安装cmake</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">sudo</span> <span class="nx">apt</span><span class="o">-</span><span class="nx">get</span> <span class="nx">install</span> <span class="nx">cmake</span>
+</pre></div>
+</div>
+<p>b）安装google-glog + gflags</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">sudo</span> <span class="nx">apt</span><span class="o">-</span><span class="nx">get</span> <span class="nx">install</span> <span class="nx">libgoogle</span><span class="o">-</span><span class="nx">glog</span><span class="o">-</span><span class="nx">dev</span>
+</pre></div>
+</div>
+<p>c）安装BLAS &amp; LAPACK</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">sudo</span> <span class="nx">apt</span><span class="o">-</span><span class="nx">get</span> <span class="nx">install</span> <span class="nx">libatlas</span><span class="o">-</span><span class="nx">base</span><span class="o">-</span><span class="nx">dev</span>
+</pre></div>
+</div>
+<p>d）安装SuiteSparse and CXSparse</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">sudo</span> <span class="nx">apt</span><span class="o">-</span><span class="nx">get</span> <span class="nx">install</span> <span class="nx">libsuitesparse</span><span class="o">-</span><span class="nx">dev</span>
+</pre></div>
+</div>
+<p>e）编译器</p>
+<p>使用Ubuntu 16.04编译demo程序需要使用GCC5.4版本，否则可能链接失败。
+使用Ubuntu 18.04编译demo程序需要使用GCC7.3版本，否则可能链接失败。</p>
+<p>编译demo</p>
+<p>解压后的文件在Linux上显示如下：</p>
+<img alt="../../_images/SDK_13.png" src="../../_images/SDK_13.png" />
+<p>现以在Ubuntu 16.04上使用GCC5.4编译demo为例，操作如下：</p>
+<p>通过命令行进入demo目录里面使用命令mkdir build 创建一个build目录，用来放编译demo程序。</p>
+<img alt="../../_images/SDK_14.png" src="../../_images/SDK_14.png" />
+<p>进入build目录</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cd</span> <span class="nx">build</span>
+<span class="nx">cmake</span> <span class="p">..</span>
+<span class="nx">make</span>
+</pre></div>
+</div>
+<p>编译demo，操作截图如下：</p>
+<img alt="../../_images/SDK_15.png" src="../../_images/SDK_15.png" />
+</div>
+<div class="section" id="id2">
+<h2>执行demo程序<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>把刚才编译的可执行文件TestIndem拷贝到刚才解压SDK的lib目录下的1604目录下，在lib/1604目录下使用 sudo ./TestIndem.sh 命令启动程序。</p>
+<p>为了减少手动拷贝操作，TestIndem.sh里有自动拷贝TestIndem到lib/1604目录的脚本，demo和lib的目录关系不要轻易改变，否则脚本失效。</p>
+<p>TestIndem和TestIndem.sh 需要可执行权限。 使用命令chmod 777 TestIndem 和chmod 777 TestIndem.sh 进行修改。</p>
+<p>为了提高系统稳定性，请运行时使用超级用户（root权限）运行，或者使用 “sudo  ./程序名” 运行，例如DEMO运行“sudo ./TestIndem.sh”。</p>
+<p>如果用户需要自己写demo程序，请参照此demo，把CMakeLists.txt写好就可以进行编译。</p>
+<p>用户基于SDK开发的程序，参考demo操作流程。</p>
+<p>如果用户自定义生成demo的可执行文件的名字，还需要在TestIndem.sh里用其替换掉TestIndem。</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">在Ubuntu 18.04上使用GCC7.3编译demo的时候，需要把demo里的CMakeLists.txt的1604改成1804才能编译成功，编译成功后把TestIndem拷贝到lib/1804下运行。</p>
+</div>
+</div>
+<div class="section" id="sdk">
+<h2>调用SDK接口说明<a class="headerlink" href="#sdk" title="永久链接至标题">¶</a></h2>
+<p>a)创建SDK对象</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">CIMRSDK</span><span class="o">*</span> <span class="nx">pSDK</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CIMRSDK</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>b)设置使用的SLAM</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">MRCONFIG</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+
+<span class="nx">config</span><span class="p">.</span><span class="nx">bSlam</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">//true开启SLAM,false不开启SLAM</span>
+</pre></div>
+</div>
+<p>c)获取模组图像数据</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">pSDK</span><span class="o">-&gt;</span><span class="nx">RegistModuleCameraCallback</span><span class="p">(</span><span class="nx">SdkCameraCallBack</span><span class="p">,</span><span class="nx">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>d)获取IMU数据</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">pSDK</span><span class="o">-&gt;</span><span class="nx">RegistModuleIMUCallback</span><span class="p">(</span><span class="nx">sdkImuCallBack</span><span class="p">,</span><span class="nx">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>e)获取SLAM结果</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">pSDK</span><span class="o">-&gt;</span><span class="nx">RegistModulePoseCallback</span><span class="p">(</span><span class="nx">sdkSLAMResult</span><span class="p">,</span><span class="nx">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>f)获取深度图</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">pSDK</span><span class="o">-&gt;</span><span class="nx">AddPluginCallback</span><span class="p">(</span><span class="s2">&quot;depthimage&quot;</span><span class="p">,</span> <span class="s2">&quot;depth&quot;</span><span class="p">,</span> <span class="nx">DepthImageCallback</span><span class="p">,</span> <span class="nx">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>g)释放资源</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">pSDK</span><span class="o">-&gt;</span><span class="nx">Release</span><span class="p">();</span>
+
+<span class="k">delete</span> <span class="nx">pSDK</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">不要在以上回调函数里做延时比较多的操作，比如把数据写入文件等，否则会造成数据丢失，影响数据正确性等后果。</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>深度图显示<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>显示深度图可以使用opencv来处理，参考如下代码，如下：</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>在Indem.cpp里增加#include &lt;opencv2/opencv.hpp&gt;
+</pre></div>
+</div>
+<img alt="../../_images/SDK_16.png" src="../../_images/SDK_16.png" />
+<p>同时，需要把lib/1604或者lib/1804目录下的imr.json文件里的选项Detection.open设置成true才能开启深度图功能。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../chajian/contents.html" class="btn btn-neutral float-right" title="插件调用" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Windows SDK anzhuang.html" class="btn btn-neutral" title="Windows SDK安装" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, INDMEIND SDK
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

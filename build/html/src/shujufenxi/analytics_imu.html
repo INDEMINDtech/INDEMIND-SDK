@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>源码 &mdash; INDEMIND SDK 1.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="prev" title="软件说明" href="analytics_stamp.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> INDEMIND SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ModuleInfo/contents.html">INDEMIND双目视觉惯性模组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about SDK/contents.html">INDEMIND SDK 说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sdk/contents.html">INDEMIND SDK 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chajian/contents.html">插件调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujudiaoqu/contents.html">数据获取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../biaoding/contents.html">SDK系统标定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozusheding/contents.html">模组设定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SLAM/contents.html">SLAM</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="contents.html">数据采集软件说明</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dataset.html">用户软件介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analytics_stamp.html">软件说明</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">源码</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">INDEMIND SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="contents.html">数据采集软件说明</a> &raquo;</li>
+        
+      <li>源码</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/src/shujufenxi/analytics_imu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="analytics-imu">
+<span id="id1"></span><h1>源码<a class="headerlink" href="#analytics-imu" title="永久链接至标题">¶</a></h1>
+<p>为提高模组数据采集软件在不同平台的适应性，同时用户可以根据自己的需求做进一步开发，INDEMIND提供了数据采集软件的源码。</p>
+<div class="section" id="id2">
+<h2>依赖部分<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>Qt版本 5.10.1（Windows/Linux)</p>
+<div class="admonition tip">
+<p class="first admonition-title">小技巧</p>
+<p class="last">下载地址： <a class="reference external" href="http://download.qt.io/archive/qt/5.10/5.10.1/">http://download.qt.io/archive/qt/5.10/5.10.1/</a></p>
+</div>
+<img alt="../../_images/SDK_30.png" src="../../_images/SDK_30.png" />
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">Linux版本请注意安装 g++编译器 Open CV依赖</p>
+</div>
+<p>Windows:</p>
+<p>Open CV版本open CV 3.1.0</p>
+<div class="admonition tip">
+<p class="first admonition-title">小技巧</p>
+<p class="last">下载地址： <a class="reference external" href="https://opencv.org/opencv-3-1.html">https://opencv.org/opencv-3-1.html</a></p>
+</div>
+<p>官方安装 帮助文档</p>
+<div class="admonition tip">
+<p class="first admonition-title">小技巧</p>
+<p class="last">下载地址：<a class="reference external" href="https://docs.opencv.org/3.1.0/d7/d9f/tutorial_linux_install.html">https://docs.opencv.org/3.1.0/d7/d9f/tutorial_linux_install.html</a></p>
+</div>
+<p>Linux:</p>
+<p>Open CV版本open CV 3.4.0</p>
+<div class="admonition tip">
+<p class="first admonition-title">小技巧</p>
+<p class="last">下载地址：<a class="reference external" href="https://opencv.org/opencv-3-4.html">https://opencv.org/opencv-3-4.html</a></p>
+</div>
+<p>官方安装 帮助文档</p>
+<div class="admonition tip">
+<p class="first admonition-title">小技巧</p>
+<p class="last">下载地址：<a class="reference external" href="https://docs.opencv.org/3.4.0/d7/d9f/tutorial_linux_install.html">https://docs.opencv.org/3.4.0/d7/d9f/tutorial_linux_install.html</a></p>
+</div>
+<p>请根据实际版本选择安装 例：Ubuntu 18.04/ Ubuntu 16.04</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">sudo</span> <span class="nx">apt</span> <span class="nx">install</span> <span class="nx">libopencv</span><span class="o">-</span><span class="nx">dev</span>
+</pre></div>
+</div>
+<p>源码部分库连接部分</p>
+<p>（请将下载好的Open CV依赖放入源码目录或自行修改pro文件）：</p>
+<p>Eigen版本 eigen3.31</p>
+<p>源码文档中已经包含</p>
+</div>
+<div class="section" id="id3">
+<h2>代码清单<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="windows">
+<h3>windows代码清单<a class="headerlink" href="#windows" title="永久链接至标题">¶</a></h3>
+<img alt="../../_images/SDK_33.png" src="../../_images/SDK_33.png" />
+<img alt="../../_images/SDK_34.png" src="../../_images/SDK_34.png" />
+</div>
+<div class="section" id="linux">
+<h3>Linux代码清单<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h3>
+<p>Linux代码清单与Windows一致。</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">编译阶段可能出现的问题：</p>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>can&#39;t find -lGL
+collect2:error：ld returned 1 exited status
+</pre></div>
+</div>
+<p>这是由于缺少openGL库引起的，可以在终端输入</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">sudo</span> <span class="nx">apt</span><span class="o">-</span><span class="nx">get</span> <span class="nx">install</span> <span class="nx">libgl1</span><span class="o">-</span><span class="nx">mesa</span><span class="o">-</span><span class="nx">dev</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="analytics_stamp.html" class="btn btn-neutral" title="软件说明" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, INDMEIND SDK
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

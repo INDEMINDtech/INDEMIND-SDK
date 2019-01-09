@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ORB_SLAM2 如何整合 &mdash; INDEMIND SDK 1.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> INDEMIND SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">ORB_SLAM2 如何整合</a><ul>
+<li><a class="reference internal" href="#mynt-eye-orb-slam2">在 MYNT® EYE 上运行 ORB_SLAM2 ，请依照这些步骤：</a></li>
+<li><a class="reference internal" href="#id2">双目样例</a></li>
+<li><a class="reference internal" href="#ros">ROS 下创建单目和双目节点</a><ul>
+<li><a class="reference internal" href="#mono-ros">Mono_ROS 例子</a></li>
+<li><a class="reference internal" href="#stereo-ros">Stereo_ROS 例子</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">INDEMIND SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>ORB_SLAM2 如何整合</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/File/slam/orb_slam2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="slam-orb-slam2">
+<span id="id1"></span><h1><a class="reference external" href="https://github.com/raulmur/ORB_SLAM2">ORB_SLAM2</a> 如何整合<a class="headerlink" href="#slam-orb-slam2" title="永久链接至标题">¶</a></h1>
+<div class="section" id="mynt-eye-orb-slam2">
+<h2>在 MYNT® EYE 上运行 ORB_SLAM2 ，请依照这些步骤：<a class="headerlink" href="#mynt-eye-orb-slam2" title="永久链接至标题">¶</a></h2>
+<ol class="arabic simple">
+<li>下载 <a class="reference external" href="https://github.com/slightech/MYNT-EYE-S-SDK.git">MYNT-EYE-S-SDK</a> 及安装。</li>
+<li>按照一般步骤安装 ORB_SLAM2 。</li>
+<li>更新 <code class="docutils literal notranslate"><span class="pre">distortion_parameters</span></code> 和 <code class="docutils literal notranslate"><span class="pre">projection_parameters</span></code> 参数到 <code class="docutils literal notranslate"><span class="pre">&lt;ORB_SLAM2&gt;/config/mynteye_*.yaml</span></code>。</li>
+<li>在 MYNT® EYE 上运行例子。</li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h2>双目样例<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>按照 <a class="reference external" href="http://wiki.ros.org/camera_calibration/Tutorials/StereoCalibration">ROS-StereoCalibration</a> 或 OpenCV 校准双目摄像头，并在 <code class="docutils literal notranslate"><span class="pre">&lt;ORB_SLAM2&gt;/config/mynteye_stereo.yaml</span></code> 中更新参数。</li>
+<li>运行脚本 <code class="docutils literal notranslate"><span class="pre">build.sh</span></code> ：</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x build.sh
+./build.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li>依照下面样式运行双目样例：</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./Examples/Stereo/stereo_mynt ./Vocabulary/ORBvoc.txt ./config/mynteye_stereo.yaml <span class="nb">true</span> /mynteye/left/image_raw /mynteye/right/image_raw
+</pre></div>
+</div>
+</div>
+<div class="section" id="ros">
+<h2>ROS 下创建单目和双目节点<a class="headerlink" href="#ros" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>添加 <code class="docutils literal notranslate"><span class="pre">Examples/ROS/ORB_SLAM2</span></code> 路径到环境变量 <code class="docutils literal notranslate"><span class="pre">ROS_PACKAGE_PATH</span></code> 。打开 <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> 文件，在最后添加下面命令行。 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 为当前 <code class="docutils literal notranslate"><span class="pre">ORB_SLAM2</span></code> 存放路径:</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">ROS_PACKAGE_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">ROS_PACKAGE_PATH</span><span class="si">}</span>:PATH/ORB_SLAM2/Examples/ROS
+</pre></div>
+</div>
+<ul class="simple">
+<li>运行脚本 <cite>build_ros.sh</cite> ：</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x build_ros.sh
+./build_ros.sh
+</pre></div>
+</div>
+<div class="section" id="mono-ros">
+<h3>Mono_ROS 例子<a class="headerlink" href="#mono-ros" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>在 <code class="docutils literal notranslate"><span class="pre">&lt;ORBSLAM2&gt;/config/mynteye_mono.yaml</span></code> 里更新 <code class="docutils literal notranslate"><span class="pre">distortion_parameters</span></code> 和 <code class="docutils literal notranslate"><span class="pre">projection_parameters</span></code> 参数</li>
+</ul>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> MYNT-EYE-S-SDK
+
+./samples/_output/bin/tutorials/get_img_params
+</pre></div>
+</div>
+<p>这时获得针孔模型下 <code class="docutils literal notranslate"><span class="pre">distortion_parameters</span></code> 和 <code class="docutils literal notranslate"><span class="pre">projection_parameters</span></code> 参数，更新到 <code class="docutils literal notranslate"><span class="pre">&lt;ORBSLAM2&gt;/config/mynteye_mono.yaml</span></code> 中。</p>
+<blockquote>
+<div><ul class="simple">
+<li>运行 ORB_SLAM2 <code class="docutils literal notranslate"><span class="pre">Mono_ROS</span></code> 例子</li>
+</ul>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosrun ORB_SLAM2 mynteye_mono ./Vocabulary/ORBvoc.txt ./config/mynteye_mono.yaml /mynteye/left/image_raw
+</pre></div>
+</div>
+</div>
+<div class="section" id="stereo-ros">
+<h3>Stereo_ROS 例子<a class="headerlink" href="#stereo-ros" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>按照 <a class="reference external" href="http://wiki.ros.org/camera_calibration/Tutorials/StereoCalibration">ROS-StereoCalibration</a> 或 OpenCV 校准双目摄像头，并在 <code class="docutils literal notranslate"><span class="pre">&lt;ORB_SLAM2&gt;/config/mynteye_stereo.yaml</span></code> 中更新参数。</li>
+<li>运行 ORB_SLAM2 <code class="docutils literal notranslate"><span class="pre">Stereo_ROS</span></code> 例子</li>
+</ul>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosrun ORB_SLAM2 ros_mynteye_stereo ./Vocabulary/ORBvoc.txt ./config/mynteye_stereo.yaml <span class="nb">true</span> /mynteye/left/image_raw /mynteye/right/image_raw
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, INDMEIND SDK
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

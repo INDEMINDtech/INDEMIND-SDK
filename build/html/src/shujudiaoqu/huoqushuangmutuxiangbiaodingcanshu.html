@@ -1,0 +1,251 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>图像标定信息 &mdash; INDEMIND SDK 1.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="IMU标定信息" href="huoquimubiaodingcanshu.html" />
+    <link rel="prev" title="获取设备信息" href="huoqushebeixinxi.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> INDEMIND SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ModuleInfo/contents.html">INDEMIND双目视觉惯性模组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about SDK/contents.html">INDEMIND SDK 说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sdk/contents.html">INDEMIND SDK 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chajian/contents.html">插件调用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="contents.html">数据获取</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="huoqushebeixinxi.html">获取设备信息</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">图像标定信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="huoquimubiaodingcanshu.html">IMU标定信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="huoqushuangmuyuanshituxiang.html">获取双目图像数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="huoquIMUshuju.html">获取IMU数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="huoqushendutuxiang.html">获取深度图像</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../biaoding/contents.html">SDK系统标定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozusheding/contents.html">模组设定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SLAM/contents.html">SLAM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujufenxi/contents.html">数据采集软件说明</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">INDEMIND SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="contents.html">数据获取</a> &raquo;</li>
+        
+      <li>图像标定信息</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/src/shujudiaoqu/huoqushuangmutuxiangbiaodingcanshu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="shuangmubiaodingcanshu">
+<span id="id1"></span><h1>图像标定信息<a class="headerlink" href="#shuangmubiaodingcanshu" title="永久链接至标题">¶</a></h1>
+<p>对于这一部分，需要首先继承IAlgorithmPlugin基类，然后初始化Init接口中，模组的硬件标定参数CamaraParams会传入进来，该参数提供了图像/IMU的标定信息。具体说明请参考SDK说明文档或参考demo调用示例，其具体的标定参数有：</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span>图像标定信息：
+·_width 图像宽
+·_height 图像高
+·_channel 通道数
+·_Kl[9] 3X3 左相机内参矩阵
+·_Kr[9] 3X3 右相机内参矩阵
+·_Dl[4] 4X1 左相机畸变差校正参数,鱼眼畸变
+·_Dr[4] 4X1 右相机畸变差校正参数,鱼眼畸变
+·_Pl[12] 3X4 基线校正后左相机投影矩阵
+·_Pr[12] 3X4 基线校正后右相机投影矩阵
+·_Rl[9] 3X3 基线校正后左相机旋转矩阵
+·_Rr[9] 3X3 基线校正后左相机旋转矩阵
+·_baseline（基线），单位：m
+·_TSCl[16] 4X4 左相机系到传感器坐标系的变换
+·_RSCl（前三行三列，旋转矩阵）
+·_tSCl（第四行前三列，杆臂，单位：m）
+·_TSCr[16] 4X4 右相机系到传感器坐标系的变换
+·_RSCl（前三行三列，旋转矩阵）
+·_tSCl（第四行前三列，杆臂，单位：m）
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="huoquimubiaodingcanshu.html" class="btn btn-neutral float-right" title="IMU标定信息" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="huoqushebeixinxi.html" class="btn btn-neutral" title="获取设备信息" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, INDMEIND SDK
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VINS-Mono 如何整合 &mdash; INDEMIND SDK 1.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="ORB_SLAM2 如何整合" href="orb_slam2.html" />
+    <link rel="prev" title="SLAM" href="contents.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> INDEMIND SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ModuleInfo/contents.html">INDEMIND双目视觉惯性模组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about SDK/contents.html">INDEMIND SDK 说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sdk/contents.html">INDEMIND SDK 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chajian/contents.html">插件调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujudiaoqu/contents.html">数据获取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../biaoding/contents.html">SDK系统标定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../control/contents.html">MYNT® EYE 控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../log/contents.html">运行日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrapper/contents.html">封装接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analytics/contents.html">数据分析</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="contents.html">SLAM</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">VINS-Mono 如何整合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orb_slam2.html">ORB_SLAM2 如何整合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="okvis.html">OKVIS 如何整合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viorb.html">VIORB 如何整合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maplab.html">Maplab 如何整合 x</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">INDEMIND SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="contents.html">SLAM</a> &raquo;</li>
+        
+      <li>VINS-Mono 如何整合</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/src/slam/vins.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="slam-vins">
+<span id="id1"></span><h1><a class="reference external" href="https://github.com/HKUST-Aerial-Robotics/VINS-Mono">VINS-Mono</a> 如何整合<a class="headerlink" href="#slam-vins" title="永久链接至标题">¶</a></h1>
+<div class="section" id="mynt-eye-vins-mono">
+<h2>在 MYNT® EYE 上运行 VINS-Mono，请依照这些步骤：<a class="headerlink" href="#mynt-eye-vins-mono" title="永久链接至标题">¶</a></h2>
+<ol class="arabic simple">
+<li>下载 <a class="reference external" href="https://github.com/slightech/MYNT-EYE-S-SDK.git">MYNT-EYE-S-SDK</a> 及安装 mynt_eye_ros_wrapper。</li>
+<li>按照一般步骤安装 VINS-Mono 。</li>
+<li>在 <a class="reference external" href="https://github.com/slightech/MYNT-EYE-VINS-Sample/blob/mynteye-s/config/mynteye/mynteye_config.yaml">这里</a> 更新 <code class="docutils literal notranslate"><span class="pre">distortion_parameters</span></code> 和 <code class="docutils literal notranslate"><span class="pre">projection_parameters</span></code> 参数。</li>
+<li>运行 mynt_eye_ros_wrapper 和 VINS-Mono 。</li>
+</ol>
+</div>
+<div class="section" id="ros-kinetic">
+<h2>快捷安装 ROS Kinetic (若已安装，请忽略)<a class="headerlink" href="#ros-kinetic" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~
+wget https://raw.githubusercontent.com/oroca/oroca-ros-pkg/master/ros_install.sh <span class="o">&amp;&amp;</span> <span class="se">\</span>
+chmod <span class="m">755</span> ./ros_install.sh <span class="o">&amp;&amp;</span> bash ./ros_install.sh catkin_ws kinetic
+</pre></div>
+</div>
+</div>
+<div class="section" id="mynt-eye-vins-sample">
+<h2>安装 MYNT-EYE-VINS-Sample<a class="headerlink" href="#mynt-eye-vins-sample" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/catkin_ws/src
+<span class="nb">cd</span> ~/catkin_ws/src
+git clone -b mynteye-s https://github.com/slightech/MYNT-EYE-VINS-Sample.git
+<span class="nb">cd</span> ..
+catkin_make
+<span class="nb">source</span> devel/setup.bash
+<span class="nb">echo</span> <span class="s2">&quot;source ~/catkin_ws/devel/setup.bash&quot;</span> &gt;&gt; ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>获取图像校准参数<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>使用 MYNT® EYE 的左目摄像头和 IMU 。通过 <a class="reference external" href="https://github.com/slightech/MYNT-EYE-S-SDK.git">MYNT-EYE-S-SDK</a> API的 <code class="docutils literal notranslate"><span class="pre">GetIntrinsics()</span></code> 函数和 <code class="docutils literal notranslate"><span class="pre">GetExtrinsics()</span></code> 函数，可以获得当前工作设备的图像校准参数：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> MYNT-EYE-S-SDK
+./samples/_output/bin/tutorials/get_img_params
+</pre></div>
+</div>
+<p>这时，可以获得针孔模型下的 <code class="docutils literal notranslate"><span class="pre">distortion_parameters</span></code> 和 <code class="docutils literal notranslate"><span class="pre">projection_parameters</span></code> 参数，然后在 <a class="reference external" href="https://github.com/slightech/MYNT-EYE-VINS-Sample/blob/mynteye-s/config/mynteye/mynteye_config.yaml">这里</a> 更新。</p>
+</div>
+<div class="section" id="id4">
+<h2>在 MYNT® EYE 上运行 VINS-Mono<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/catkin_ws
+roslaunch mynt_eye_ros_wrapper mynteye.launch
+roslaunch vins_estimator mynteye.launch
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">如果使用鱼眼相机模型，点击 <a class="reference external" href="https://github.com/slightech/MYNT-EYE-VINS-Sample/tree/mynteye-s/calibration_images">这里</a> 。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="orb_slam2.html" class="btn btn-neutral float-right" title="ORB_SLAM2 如何整合" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="contents.html" class="btn btn-neutral" title="SLAM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, INDMEIND SDK
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

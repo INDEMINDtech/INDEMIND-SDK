@@ -1,0 +1,29 @@
+﻿.. _INDEMIND双目惯性模组_xiangxicanshu:
+
+详细参数
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+硬件技术指标
+---------------------------------------------
+
+.. image:: ../../tupian/yingjianjishuzhibiao.png
+
+传感器选型
+---------------------------------------------
+
+.. image:: ../../tupian/chuanganqileixing.png
+
+软件技术指标
+---------------------------------------------
+
+.. image:: ../../tupian/ruanjianjishuzhibiao.png
+
+产品规格
+---------------------------------------------
+
+.. image:: ../../tupian/chanpinguige.png
+
+软件规格
+---------------------------------------------
+
+.. image:: ../../tupian/tuanjianguige.png

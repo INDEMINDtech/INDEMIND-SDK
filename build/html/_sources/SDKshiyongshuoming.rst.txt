@@ -1,0 +1,5 @@
+INDEMIND双目视觉惯性SDK介绍
+=============
+
+SDK开发包随本文档一起提供，开发包中分为linux和windows版本。其中windows版本依赖库放在SDK-bin.zip中，Linux版依赖库放在SDK-lin.zip中，头文件放在include文件夹中，demo文件夹存放了示例代码。
+要使用SDK，首先需要创建SDK对象：

@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>设定加速度计及陀螺仪的量程 &mdash; INDEMIND SDK 1.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="SLAM" href="../SLAM/contents.html" />
+    <link rel="prev" title="设定图像帧率和 IMU 频率" href="framerate.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> INDEMIND SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ModuleInfo/contents.html">INDEMIND双目视觉惯性模组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about SDK/contents.html">INDEMIND SDK 说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sdk/contents.html">INDEMIND SDK 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chajian/contents.html">插件调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujudiaoqu/contents.html">数据获取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../biaoding/contents.html">SDK系统标定</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="contents.html">模组设定</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="framerate.html">设定图像帧率和 IMU 频率</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">设定加速度计及陀螺仪的量程</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SLAM/contents.html">SLAM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujufenxi/contents.html">数据采集软件说明</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">INDEMIND SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="contents.html">模组设定</a> &raquo;</li>
+        
+      <li>设定加速度计及陀螺仪的量程</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/src/mozusheding/imu_range.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="imu-range">
+<span id="id1"></span><h1>设定加速度计及陀螺仪的量程<a class="headerlink" href="#imu-range" title="永久链接至标题">¶</a></h1>
+<p>通过 API 的 <code class="docutils literal notranslate"><span class="pre">SetOptionValue()</span></code> 函数，就可以设定当前打开设备的各类控制值。</p>
+<p>设定加速度计及陀螺仪的量程，就是设定 <code class="docutils literal notranslate"><span class="pre">Option::ACCELEROMETER_RANGE</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Option::GYROSCOPE_RANGE</span></code> 。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>加速度计量程有效值（单位：g）： 4, 8, 16, 32 。</li>
+<li>陀螺仪量程有效值（单位：deg/s）： 500, 1000, 2000, 4000 。</li>
+</ul>
+</div>
+<p>参考代码片段：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="o">&amp;&amp;</span><span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">api</span><span class="p">)</span>
+  <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">// ACCELEROMETER_RANGE values: 4, 8, 16, 32</span>
+<span class="n">api</span><span class="o">-&gt;</span><span class="n">SetOptionValue</span><span class="p">(</span><span class="n">Option</span><span class="o">::</span><span class="n">ACCELEROMETER_RANGE</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+<span class="c1">// GYROSCOPE_RANGE values: 500, 1000, 2000, 4000</span>
+<span class="n">api</span><span class="o">-&gt;</span><span class="n">SetOptionValue</span><span class="p">(</span><span class="n">Option</span><span class="o">::</span><span class="n">GYROSCOPE_RANGE</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+
+<span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Set ACCELEROMETER_RANGE to &quot;</span>
+          <span class="o">&lt;&lt;</span> <span class="n">api</span><span class="o">-&gt;</span><span class="n">GetOptionValue</span><span class="p">(</span><span class="n">Option</span><span class="o">::</span><span class="n">ACCELEROMETER_RANGE</span><span class="p">);</span>
+<span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Set GYROSCOPE_RANGE to &quot;</span>
+          <span class="o">&lt;&lt;</span> <span class="n">api</span><span class="o">-&gt;</span><span class="n">GetOptionValue</span><span class="p">(</span><span class="n">Option</span><span class="o">::</span><span class="n">GYROSCOPE_RANGE</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>参考运行结果，于 Linux 上：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./samples/_output/bin/tutorials/ctrl_imu_range
+I/utils.cc:28 Detecting MYNT EYE devices
+I/utils.cc:38 MYNT EYE devices:
+I/utils.cc:41   index: <span class="m">0</span>, name: MYNT-EYE-S1030, sn: 4B4C1F1100090712
+I/utils.cc:49 Only one MYNT EYE device, <span class="k">select</span> index: <span class="m">0</span>
+I/imu_range.cc:34 Set ACCELEROMETER_RANGE to <span class="m">8</span>
+I/imu_range.cc:36 Set GYROSCOPE_RANGE to <span class="m">1000</span>
+I/imu_range.cc:81 Time beg: <span class="m">2018</span>-11-21 <span class="m">15</span>:34:57.726428, end: <span class="m">2018</span>-11-21 <span class="m">15</span>:35:12.190478, cost: 14464ms
+I/imu_range.cc:84 Img count: <span class="m">363</span>, fps: <span class="m">25</span>.0967
+I/imu_range.cc:86 Imu count: <span class="m">2825</span>, hz: <span class="m">195</span>.312
+</pre></div>
+</div>
+<p>样例程序按 <code class="docutils literal notranslate"><span class="pre">ESC/Q</span></code> 结束运行后，imu量程设置完成。该结果将固化在硬件内部，不受掉电影响。</p>
+<p>完整代码样例，请见 <a class="reference external" href="https://github.com/slightech/MYNT-EYE-S-SDK/blob/master/samples/tutorials/control/imu_range.cc">imu_range.cc</a> 。</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../SLAM/contents.html" class="btn btn-neutral float-right" title="SLAM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="framerate.html" class="btn btn-neutral" title="设定图像帧率和 IMU 频率" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, INDMEIND SDK
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
