@@ -1,6 +1,6 @@
 .. _slam:
 
-INDEMIND Vi-SLAM
+SLAM
 =================
 
 .. toctree::
