@@ -1,6 +1,6 @@
 ﻿.. _sdk:
 
-INDEMIND SDK 安装
+SDK 安装
 =============
 
 .. toctree::
@@ -8,4 +8,5 @@ INDEMIND SDK 安装
    pingtaizhichi
    Windows SDK anzhuang
    ubuntu SDK anzhang
+   ros SDK anzhuang
 

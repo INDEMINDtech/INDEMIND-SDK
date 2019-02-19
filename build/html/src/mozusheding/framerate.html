@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>设定图像帧率和 IMU 频率 &mdash; INDEMIND SDK 1.1 文档</title>
+  <title>待补充 &mdash; INDEMIND SDK 1.1 文档</title>
   
 
   
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="设定加速度计及陀螺仪的量程" href="imu_range.html" />
+    <link rel="next" title="待补充" href="imu_range.html" />
     <link rel="prev" title="模组设定" href="contents.html" /> 
 
   
@@ -79,15 +79,16 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../ModuleInfo/contents.html">INDEMIND双目视觉惯性模组</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../about SDK/contents.html">INDEMIND SDK 说明</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sdk/contents.html">INDEMIND SDK 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ModuleInfo/contents.html">产品介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about SDK/contents.html">SDK 说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sdk/contents.html">SDK 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gujianshengji/contents.html">固件升级</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chajian/contents.html">插件调用</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../shujudiaoqu/contents.html">数据获取</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../biaoding/contents.html">SDK系统标定</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="contents.html">模组设定</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">设定图像帧率和 IMU 频率</a></li>
-<li class="toctree-l2"><a class="reference internal" href="imu_range.html">设定加速度计及陀螺仪的量程</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">待补充</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imu_range.html">待补充</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../SLAM/contents.html">SLAM</a></li>
@@ -139,7 +140,7 @@
         
           <li><a href="contents.html">模组设定</a> &raquo;</li>
         
-      <li>设定图像帧率和 IMU 频率</li>
+      <li>待补充</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -158,49 +159,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="imu">
-<span id="framerate"></span><h1>设定图像帧率和 IMU 频率<a class="headerlink" href="#imu" title="永久链接至标题">¶</a></h1>
-<p>通过 API 的 <code class="docutils literal notranslate"><span class="pre">SetOptionValue()</span></code> 函数，就可以设定当前打开设备的各类控制值。</p>
-<p>设定图像帧率和 IMU 频率，就是设定 <code class="docutils literal notranslate"><span class="pre">Option::FRAME_RATE</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Option::IMU_FREQUENCY</span></code> 。</p>
-<div class="admonition attention">
-<p class="first admonition-title">注意</p>
-<ul class="last simple">
-<li>图像帧率和 IMU 频率必须同时设定才能生效。</li>
-<li>图像帧率有效值： 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 。</li>
-<li>IMU 频率有效值： 100, 200, 250, 333, 500 。</li>
-</ul>
-</div>
-<p>参考代码片段：</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="o">&amp;&amp;</span><span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
-
-<span class="c1">// Attention: must set FRAME_RATE and IMU_FREQUENCY together, otherwise won&#39;t</span>
-<span class="c1">// succeed.</span>
-
-<span class="c1">// FRAME_RATE values: 10, 15, 20, 25, 30, 35, 40, 45, 50, 55</span>
-<span class="n">api</span><span class="o">-&gt;</span><span class="n">SetOptionValue</span><span class="p">(</span><span class="n">Option</span><span class="o">::</span><span class="n">FRAME_RATE</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
-<span class="c1">// IMU_FREQUENCY values: 100, 200, 250, 333, 500</span>
-<span class="n">api</span><span class="o">-&gt;</span><span class="n">SetOptionValue</span><span class="p">(</span><span class="n">Option</span><span class="o">::</span><span class="n">IMU_FREQUENCY</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
-
-<span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Set FRAME_RATE to &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">api</span><span class="o">-&gt;</span><span class="n">GetOptionValue</span><span class="p">(</span><span class="n">Option</span><span class="o">::</span><span class="n">FRAME_RATE</span><span class="p">);</span>
-<span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Set IMU_FREQUENCY to &quot;</span>
-          <span class="o">&lt;&lt;</span> <span class="n">api</span><span class="o">-&gt;</span><span class="n">GetOptionValue</span><span class="p">(</span><span class="n">Option</span><span class="o">::</span><span class="n">IMU_FREQUENCY</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>参考运行结果，于 Linux 上：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./samples/_output/bin/tutorials/ctrl_framerate
-I0513 <span class="m">14</span>:05:57.218222 <span class="m">31813</span> utils.cc:26<span class="o">]</span> Detecting MYNT EYE devices
-I0513 <span class="m">14</span>:05:57.899404 <span class="m">31813</span> utils.cc:33<span class="o">]</span> MYNT EYE devices:
-I0513 <span class="m">14</span>:05:57.899430 <span class="m">31813</span> utils.cc:37<span class="o">]</span>   index: <span class="m">0</span>, name: MYNT-EYE-S1000
-I0513 <span class="m">14</span>:05:57.899435 <span class="m">31813</span> utils.cc:43<span class="o">]</span> Only one MYNT EYE device, <span class="k">select</span> index: <span class="m">0</span>
-I0513 <span class="m">14</span>:05:58.076257 <span class="m">31813</span> framerate.cc:36<span class="o">]</span> Set FRAME_RATE to <span class="m">25</span>
-I0513 <span class="m">14</span>:05:58.076836 <span class="m">31813</span> framerate.cc:37<span class="o">]</span> Set IMU_FREQUENCY to <span class="m">500</span>
-I0513 <span class="m">14</span>:06:21.702361 <span class="m">31813</span> framerate.cc:82<span class="o">]</span> Time beg: <span class="m">2018</span>-05-13 <span class="m">14</span>:05:58.384967, end: <span class="m">2018</span>-05-13 <span class="m">14</span>:06:21.666115, cost: <span class="m">23281</span>.1ms
-I0513 <span class="m">14</span>:06:21.702388 <span class="m">31813</span> framerate.cc:85<span class="o">]</span> Img count: <span class="m">573</span>, fps: <span class="m">24</span>.6122
-I0513 <span class="m">14</span>:06:21.702404 <span class="m">31813</span> framerate.cc:87<span class="o">]</span> Imu count: <span class="m">11509</span>, hz: <span class="m">494</span>.348
-</pre></div>
-</div>
-<p>样例程序按 <code class="docutils literal notranslate"><span class="pre">ESC/Q</span></code> 结束运行后，会输出计算得的图像帧率和 IMU 频率。</p>
-<p>完整代码样例，请见 <a class="reference external" href="https://github.com/slightech/MYNT-EYE-S-SDK/blob/master/samples/tutorials/control/framerate.cc">framerate.cc</a> 。</p>
+  <div class="section" id="framerate">
+<span id="id1"></span><h1>待补充<a class="headerlink" href="#framerate" title="永久链接至标题">¶</a></h1>
 </div>
 
 
@@ -211,7 +171,7 @@ I0513 <span class="m">14</span>:06:21.702404 <span class="m">31813</span> framer
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="imu_range.html" class="btn btn-neutral float-right" title="设定加速度计及陀螺仪的量程" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="imu_range.html" class="btn btn-neutral float-right" title="待补充" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="contents.html" class="btn btn-neutral" title="模组设定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

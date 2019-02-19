@@ -8,4 +8,5 @@ SDK 安装
    pingtaizhichi
    Windows SDK anzhuang
    ubuntu SDK anzhang
+   ros SDK anzhuang
 
