@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>API调用 &mdash; INDEMIND SDK 1.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="API Demo" href="API Demo.html" />
+    <link rel="prev" title="底层调用说明" href="contents.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> INDEMIND SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ModuleInfo/contents.html">产品介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about SDK/contents.html">SDK 说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sdk/contents.html">SDK 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chajian/contents.html">插件调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujudiaoqu/contents.html">数据获取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../biaoding/contents.html">SDK系统标定</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="contents.html">底层调用说明</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">API调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API Demo.html">API Demo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SLAM/contents.html">SLAM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujufenxi/contents.html">数据采集软件说明</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">INDEMIND SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="contents.html">底层调用说明</a> &raquo;</li>
+        
+      <li>API调用</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/src/dicengdiaoyong/APIdiaoyong.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api">
+<span id="api-diaoyong"></span><h1>API调用<a class="headerlink" href="#api" title="永久链接至标题">¶</a></h1>
+<p>以下是基本函数调用说明，具体操作参考main.c</p>
+<p>下载地址：<a class="reference external" href="https://github.com/INDEMIND/Driver_Linux">https://github.com/INDEMIND/Driver_Linux</a></p>
+<div class="section" id="indem">
+<h2>indem命名空间<a class="headerlink" href="#indem" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>using namespace indem<span class="p">;</span>
+</pre></div>
+</div>
+<p>调用DriverFactory()函数返回api对象指针</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>如：IDriverInterface *driver <span class="o">=</span> DriverFactory<span class="o">()</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>设置回调函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p><strong>根据以下几个定义，实现三个回调函数，用于接收相关数据，回调函数参数定义可参考include/DriverInterface.h</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>typedef void<span class="o">(</span>*DriverCameraDataCallback<span class="o">)(</span>cameraData* data<span class="o">)</span><span class="p">;</span>
+typedef void<span class="o">(</span>*DriverIMUDataCallback<span class="o">)(</span>IMUData* data<span class="o">)</span><span class="p">;</span>
+typedef void<span class="o">(</span>*DriverHotplugCallback<span class="o">)(</span>bool bArrive<span class="o">)</span><span class="p">;</span>
+
+如：
+void ImuCallBackFunction<span class="o">(</span>IMUData* data<span class="o">)</span>；
+void CameraCallbackFunction<span class="o">(</span>cameraData* data<span class="o">)</span>；
+void HMDHotplugCallback_func <span class="o">(</span>bool bArrive<span class="o">)</span>；
+</pre></div>
+</div>
+<p><strong>获取标定参数</strong></p>
+<p>函数原型:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bool GetModuleParams<span class="o">(</span>int<span class="p">&amp;</span> version, unsigned char* params, size_t<span class="p">&amp;</span> len<span class="o">)</span>
+version: 模组内部固件版本标记，备用
+params:    模组信息标定信息存放缓冲区
+len: 接收到数据的长度，单位:byte
+<span class="k">return</span>: <span class="nb">true</span> 获取参数成功， <span class="nb">false</span> 获取参数失败
+</pre></div>
+</div>
+<p>调用如下:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>int <span class="nv">version</span> <span class="o">=</span> <span class="m">255</span><span class="p">;</span>
+size_t <span class="nv">info_size</span> <span class="o">=</span> <span class="m">0</span><span class="p">;</span>
+unsigned char *module_info <span class="o">=</span> new unsigned char<span class="o">[(</span>sizeof<span class="o">(</span>struct ModuleParameters<span class="o">))]</span><span class="p">;</span>
+struct ModuleParameters moddule_param<span class="p">;</span>//标定参数等信息
+driver-&gt;GetModuleParams<span class="o">(</span>version, module_info, info_size<span class="o">)</span><span class="p">;</span>
+memcpy<span class="o">(</span><span class="p">&amp;</span>moddule_param, module_info, sizeof<span class="o">(</span>struct ModuleParameters<span class="o">))</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>调用设备打开接口，打开模组</strong></p>
+<p>函数原型:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bool Open<span class="o">(</span>int <span class="nv">imuFreq</span><span class="o">=</span><span class="m">1000</span>,int <span class="nv">imgFreq</span><span class="o">=</span><span class="m">50</span>, IMAGE_RESOLUTION <span class="nv">resolution</span><span class="o">=</span> RESOLUTION_DEFAULT<span class="o">)</span>
+
+param1: imu数据频率<span class="o">(</span>imuFreq<span class="o">)</span> 目前只支持 &lt;1000hz 且需要满足 <span class="m">1000</span>/imuFreq 为&gt;0 整数（imu寄存器中是以时间间隔为单位配置的）
+
+param2: 图像频率 目前支持 <span class="m">25</span>、50
+
+param3: 图像分辨率 参数只支持 RESOLUTION_1280（1280x800x2）、RESOLUTION_640（640x400x2）
+
+<span class="k">return</span>：false 设备打开失败
+
+调用如下:
+
+driver-&gt;Open<span class="o">(</span><span class="m">1000</span>, <span class="m">50</span>, RESOLUTION_1280<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>调用回调函数接口配置回调函数</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>如：
+driver-&gt;SetCameraCallback<span class="o">(</span>CameraCallbackFunction<span class="o">)</span><span class="p">;</span>
+driver-&gt;SetIMUCallback<span class="o">(</span>ImuCallBackFunction<span class="o">)</span><span class="p">;</span>
+SetHotplugCallback<span class="o">(</span>HMDHotplugCallback_func<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>更多内容请参考main.c</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="API Demo.html" class="btn btn-neutral float-right" title="API Demo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="contents.html" class="btn btn-neutral" title="底层调用说明" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, INDMEIND SDK
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

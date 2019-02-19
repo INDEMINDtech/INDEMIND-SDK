@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>数据获取 &mdash; INDEMIND SDK 1.1 文档</title>
+  <title>API Demo &mdash; INDEMIND SDK 1.1 文档</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="获取设备信息" href="huoqushebeixinxi.html" />
-    <link rel="prev" title="插件开发规范" href="../chajian/kaifaguifan.html" /> 
+    <link rel="next" title="SLAM" href="../SLAM/contents.html" />
+    <link rel="prev" title="API调用" href="APIdiaoyong.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -83,17 +83,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../about SDK/contents.html">SDK 说明</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sdk/contents.html">SDK 安装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chajian/contents.html">插件调用</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">数据获取</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="huoqushebeixinxi.html">获取设备信息</a></li>
-<li class="toctree-l2"><a class="reference internal" href="huoqushuangmutuxiangbiaodingcanshu.html">图像标定信息</a></li>
-<li class="toctree-l2"><a class="reference internal" href="huoquimubiaodingcanshu.html">IMU标定信息</a></li>
-<li class="toctree-l2"><a class="reference internal" href="huoqushuangmuyuanshituxiang.html">获取双目图像数据</a></li>
-<li class="toctree-l2"><a class="reference internal" href="huoquIMUshuju.html">获取IMU数据</a></li>
-<li class="toctree-l2"><a class="reference internal" href="huoqushendutuxiang.html">获取深度图像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shujudiaoqu/contents.html">数据获取</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../biaoding/contents.html">SDK系统标定</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="contents.html">底层调用说明</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="APIdiaoyong.html">API调用</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">API Demo</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../biaoding/contents.html">SDK系统标定</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dicengdiaoyong/contents.html">底层调用说明</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../SLAM/contents.html">SLAM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../shujufenxi/contents.html">数据采集软件说明</a></li>
 </ul>
@@ -141,13 +137,15 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>数据获取</li>
+          <li><a href="contents.html">底层调用说明</a> &raquo;</li>
+        
+      <li>API Demo</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/src/shujudiaoqu/contents.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/src/dicengdiaoyong/API Demo.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -160,17 +158,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="data">
-<span id="id1"></span><h1>数据获取<a class="headerlink" href="#data" title="永久链接至标题">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="huoqushebeixinxi.html">获取设备信息</a></li>
-<li class="toctree-l1"><a class="reference internal" href="huoqushuangmutuxiangbiaodingcanshu.html">图像标定信息</a></li>
-<li class="toctree-l1"><a class="reference internal" href="huoquimubiaodingcanshu.html">IMU标定信息</a></li>
-<li class="toctree-l1"><a class="reference internal" href="huoqushuangmuyuanshituxiang.html">获取双目图像数据</a></li>
-<li class="toctree-l1"><a class="reference internal" href="huoquIMUshuju.html">获取IMU数据</a></li>
-<li class="toctree-l1"><a class="reference internal" href="huoqushendutuxiang.html">获取深度图像</a></li>
-</ul>
+  <div class="section" id="api-demo">
+<span id="id1"></span><h1>API Demo<a class="headerlink" href="#api-demo" title="永久链接至标题">¶</a></h1>
+<div class="section" id="aarch64">
+<h2>aarch64:<a class="headerlink" href="#aarch64" title="永久链接至标题">¶</a></h2>
+<p><strong>交叉编译工具下载</strong></p>
+<p>下载地址：<a class="reference external" href="https://releases.linaro.org/components/toolchain/binaries/7.3-2018.05/aarch64-linux-gnu/">https://releases.linaro.org/components/toolchain/binaries/7.3-2018.05/aarch64-linux-gnu/</a></p>
+<p>选择 gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz</p>
+<p>解压交叉编译工具,可根据需要修改交叉编译工具(同时修改 <code class="docutils literal notranslate"><span class="pre">build.sh</span></code> 中  <code class="docutils literal notranslate"><span class="pre">CROSS_COMPILE</span></code> 选项)：</p>
+<p>tar -xvJf gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz</p>
+<p>编译：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./build.sh
+</pre></div>
+</div>
+<p>运行：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ./main.sh width height camfps imufreq
+
+如：sudo ./main.sh <span class="m">640</span> <span class="m">400</span> <span class="m">25</span> <span class="m">200</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x86-64">
+<h2>x86_64:<a class="headerlink" href="#x86-64" title="永久链接至标题">¶</a></h2>
+<p>编译：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./build.sh
+</pre></div>
+</div>
+<p>运行：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ./main.sh width height camfps imufreq
+如：sudo ./main.sh <span class="m">640</span> <span class="m">400</span> <span class="m">25</span> <span class="m">200</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -182,10 +200,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="huoqushebeixinxi.html" class="btn btn-neutral float-right" title="获取设备信息" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../SLAM/contents.html" class="btn btn-neutral float-right" title="SLAM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../chajian/kaifaguifan.html" class="btn btn-neutral" title="插件开发规范" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="APIdiaoyong.html" class="btn btn-neutral" title="API调用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
