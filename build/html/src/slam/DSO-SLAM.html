@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>VINS_Mono &mdash; INDEMIND SDK 1.1 文档</title>
+  <title>DSO_SLAM &mdash; INDEMIND SDK 1.1 文档</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="DSO_SLAM" href="DSO-SLAM.html" />
-    <link rel="prev" title="ORB_SLAM2" href="ORB-SLAM2.html" /> 
+    <link rel="next" title="数据采集软件说明" href="../shujufenxi/contents.html" />
+    <link rel="prev" title="VINS_Mono" href="VINS.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -90,8 +90,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="contents.html">SLAM</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Vi-SLAM.html">INDEMIND Vi-SLAM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ORB-SLAM2.html">ORB_SLAM2</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">VINS_Mono</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DSO-SLAM.html">DSO_SLAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VINS.html">VINS_Mono</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DSO_SLAM</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../shujufenxi/contents.html">数据采集软件说明</a></li>
@@ -142,13 +142,13 @@
         
           <li><a href="contents.html">SLAM</a> &raquo;</li>
         
-      <li>VINS_Mono</li>
+      <li>DSO_SLAM</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/src/SLAM/VINS.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/src/SLAM/DSO-SLAM.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -161,15 +161,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="slam-vins">
-<span id="id1"></span><h1><a class="reference external" href="https://github.com/heguixiang/Remove_ROS_VINS">VINS_Mono</a><a class="headerlink" href="#slam-vins" title="永久链接至标题">¶</a></h1>
+  <div class="section" id="slam-dso">
+<span id="id1"></span><h1><a class="reference external" href="https://github.com/JakobEngel/dso">DSO_SLAM</a><a class="headerlink" href="#slam-dso" title="永久链接至标题">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">注解</p>
-<p class="last">本次Demo基于双目视觉惯性模组离线运行VINS，实时运行Demo待更新</p>
+<p class="last">本次Demo基于双目视觉惯性模组离线运行DSO，实时运行Demo待更新</p>
 </div>
-<div class="section" id="vins">
-<h2>1.下载VINS<a class="headerlink" href="#vins" title="永久链接至标题">¶</a></h2>
-<p>下载地址：<a class="reference external" href="https://github.com/heguixiang/Remove_ROS_VINS">https://github.com/heguixiang/Remove_ROS_VINS</a></p>
+<div class="section" id="dso">
+<h2>1.下载DSO<a class="headerlink" href="#dso" title="永久链接至标题">¶</a></h2>
+<p>下载地址：<a class="reference external" href="https://github.com/JakobEngel/dso">https://github.com/JakobEngel/dso</a></p>
 </div>
 <div class="section" id="indemindsdk">
 <h2>2.下载INDEMIND双目视觉惯性模组SDK<a class="headerlink" href="#indemindsdk" title="永久链接至标题">¶</a></h2>
@@ -234,8 +234,8 @@ delete pSDK<span class="p">;</span>
 <p>编译器</p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p>使用 Ubuntu 16.04 编译 demo 程序需要使用 GCC5.4 版本,否则可能链接失败。</p>
-<p class="last">使用 Ubuntu 18.04 编译 demo 程序需要使用 GCC7.3 版本,否则可能链接失败。</p>
+<p class="last">使用 Ubuntu 16.04 编译 demo 程序需要使用 GCC5.4 版本,否则可能链接失败。
+使用 Ubuntu 18.04 编译 demo 程序需要使用 GCC7.3 版本,否则可能链接失败。</p>
 </div>
 <p>编译</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> build
@@ -253,33 +253,56 @@ make
 </div>
 </div>
 <div class="section" id="id2">
-<h2>4.VINS参数设置及矫正<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
-<p>在estimator_node.cpp中添加去畸变命令</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cv::fisheye::initUndistortRectifyMap<span class="o">(</span>K_l,D_l,R_l,P_l.rowRange<span class="o">(</span><span class="m">0</span>,3<span class="o">)</span>.colRange<span class="o">(</span><span class="m">0</span>,3<span class="o">)</span>,cv::Size<span class="o">(</span>cols_l,rows_l<span class="o">)</span>,CV_32FC1,M1l,M2l<span class="o">)</span><span class="p">;</span>
+<h2>4.DSO安装配置<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>编译前准备：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install libsuitesparse-dev libeigen3-dev libboost-all-dev
+sudo apt-get install libopencv-dev
+sudo apt-get install zlib1g-dev
+<span class="nb">cd</span> dso/thirdparty
+tar -zxvf libzip-1.1.1.tar.gz
+<span class="nb">cd</span> libzip-1.1.1/
+./configure
+make
+sudo make install
+sudo cp lib/zipconf.h /usr/local/include/zipconf.h
 </pre></div>
 </div>
-<p>将去畸变后，获取到的P_l值传给/home/indemind/SDKbackup/indem/u/vins/src/config/euroc/euroc_config.yaml中的 <code class="docutils literal notranslate"><span class="pre">fx、fy、cx和cy</span></code> 。</p>
-<p>编译前要下载的库</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li>Ceres Solver</li>
-<li>Opencv 3.1</li>
-<li>Eigen 3.2.0</li>
-<li>boost</li>
-<li>Pangolin</li>
-</ol>
-</div></blockquote>
+<p>CMakeLists.txt文件内添加：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>add_definitions<span class="o">(</span>-DBOOST_ERROR_CODE_HEADER_ONLY<span class="o">)</span>
+</pre></div>
+</div>
+<p>camera.txt的修改：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>EquiDistant fx fy cx cy k1 k2 r1 r2
+in_width in_height
+<span class="s2">&quot;crop&quot;</span> / <span class="s2">&quot;full&quot;</span> / <span class="s2">&quot;fx fy cx cy 0&quot;</span>
+out_width out_height
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">小技巧</p>
+<p>其中fx fy cx cy k1 k2 r1 r2</p>
+<p class="last">in_width in_height需根据实际情况自行配置。</p>
+</div>
 <p>编译</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv Remove_ROS_VINS src
-./generate.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> dso
+mkdir build
+<span class="nb">cd</span> build
+cmake ..
+make -j4
 </pre></div>
 </div>
 <p>执行</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> VINS_Workspace
-./src/vins_estimator/build/vins_estimator ./src/config/euroc/euroc_config.yaml ./data/mav1/cam0/data ./data/mav1/filename.txt ./data/mav1/imu0/data.csv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bin/dso_dataset <span class="nv">files</span><span class="o">=</span>XXXXX/data/images <span class="nv">calib</span><span class="o">=</span>XXXXX/data/camera.txt <span class="nv">preset</span><span class="o">=</span><span class="m">0</span> <span class="nv">mode</span><span class="o">=</span><span class="m">0</span>
 </pre></div>
 </div>
-<p>至此，INDEMIND双目视觉惯性模组运行ORB-SLAM工程全部部署完毕，请参考 <a class="reference external" href="https://v.qq.com/x/page/o082495ojpb.html">算法Demo</a></p>
+<div class="admonition tip">
+<p class="first admonition-title">小技巧</p>
+<p class="last">files后的XXXXX/data/images为图像路径；calib=XXXXX/data/camera.txt为配置文件路径。</p>
+</div>
+<p>至此，INDEMIND双目视觉惯性模组运行ORB-SLAM工程全部部署完毕，请参考 ：</p>
+<p><a class="reference external" href="https://v.qq.com/x/page/q07729x79j3.html">室内Demo</a></p>
+<p><a class="reference external" href="https://v.qq.com/x/page/r0772lkv7yl.html">室内地税平面Demo</a></p>
+<p><a class="reference external" href="https://v.qq.com/x/page/d07726x39cm.html">室外Demo</a></p>
 </div>
 </div>
 
@@ -291,10 +314,10 @@ make
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="DSO-SLAM.html" class="btn btn-neutral float-right" title="DSO_SLAM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../shujufenxi/contents.html" class="btn btn-neutral float-right" title="数据采集软件说明" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ORB-SLAM2.html" class="btn btn-neutral" title="ORB_SLAM2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="VINS.html" class="btn btn-neutral" title="VINS_Mono" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

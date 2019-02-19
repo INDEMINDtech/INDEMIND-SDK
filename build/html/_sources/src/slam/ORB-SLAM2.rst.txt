@@ -3,5 +3,194 @@
 `ORB_SLAM2 <https://github.com/raulmur/ORB_SLAM2>`_ 
 ==============================================================
 
+.. note:: 
 
-待补充
+  本次Demo基于双目视觉惯性模组离线运行ORB，实时运行Demo待更新
+  
+1.下载ORB-SLAM
+---------------------------------------------------------------
+
+下载地址：https://github.com/raulmur/ORB_SLAM2
+
+
+2.下载INDEMIND双目视觉惯性模组SDK
+---------------------------------------------------------------------------------
+
+INDEMIND双目视觉惯性模组的SDK为开发者提供了丰富的开发工具与辅助，省去了开发者对相机的标定、数据同步等开发工作，加速开发进程。因此，我们直接根据自身操作系统直接下载INDEMIND双目视觉惯性模组的SDK即可。
+
+下载地址：http://indemind.cn/sdk.html
+
+3.使用SDK
+---------------------------------------------------------------
+
+创建SDK对象
+
+.. code-block:: bash
+
+  CIMRSDK* pSDK = new CIMRSDK();
+
+设置使用的 SLAM
+
+.. code-block:: bash
+
+  MRCONFIG config = { 0 };
+  config.bSlam = true; //true 开启 SLAM,false 不开启 SLAM
+
+//获取模组标定信息
+
+.. code-block:: bash
+
+  CameraCalibrationParameter param;
+
+获取模组图像数据
+
+.. code-block:: bash
+
+  pSDK->RegistModuleCameraCallback(SdkCameraCallBack,NULL);
+
+获取 SLAM 结果
+
+.. code-block:: bash
+
+  pSDK->RegistModulePoseCallback(sdkSLAMResult,NULL);
+
+将param的参数写入文件中
+
+.. code-block:: bash
+
+  ofstream out("./datafile.txt");
+
+释放资源
+
+.. code-block:: bash
+
+  pSDK->Release();
+  delete pSDK;
+
+编译
+
+安装 cmake
+
+.. code-block:: bash
+
+  sudo apt-get install cmake
+
+安装 google-glog + gflags
+
+.. code-block:: bash
+
+  sudo apt-get install libgoogle-glog-dev
+
+安装 BLAS & LAPACK
+
+.. code-block:: bash
+
+  sudo apt-get install libatlas-base-dev
+
+安装 SuiteSparse and CXSparse
+
+.. code-block:: bash
+
+  sudo apt-get install libsuitesparse-dev
+
+编译器
+
+.. warning:: 
+
+  使用 Ubuntu 16.04 编译 demo 程序需要使用 GCC5.4 版本,否则可能链接失败。
+  使用 Ubuntu 18.04 编译 demo 程序需要使用 GCC7.3 版本,否则可能链接失败。
+
+
+编译
+
+.. code-block:: bash
+
+  cd build
+  cmake ..
+  make
+
+执行
+
+把刚才编译的可执行文件 ``TestIndem 拷贝到刚才解压 SDK 的lib 目录下的 1604 目录下`` ，在 lib/1604 目录下使用 ``sudo ./TestIndem.sh`` 命令启动程序。
+
+TestIndem 和 TestIndem.sh 需要可执行权限。 使用命令 ``chmod 777 TestIndem`` 和 ``chmod 777 TestIndem.sh`` 进行修改。
+
+为了提高系统稳定性,请运行时使用超级用户(root 权限)运行,或者使用 ``sudo ./程序名`` 运行,例如 DEMO 运行 ``sudo ./TestIndem.sh`` 。
+
+.. warning:: 
+
+  在 Ubuntu 18.04 上使用 GCC7.3 编译 demo 的时候,需要把 demo 里的 CMakeLists.txt 的1604 改成 1804 才能编译成功，编译成功后把 TestIndem 拷贝到 lib/1804 下运行。
+
+4.ORB-SLAM2参数设置及矫正
+---------------------------------------------------------------
+
+需要更改的相机参数：
+
+.. code-block:: bash
+
+  //双目摄像头之间的相对关系
+
+  cv::Mat R = cv::Mat(3,3,CV_64FC1,R_matrix);
+  cv::Mat t = cv::Mat(3,1,CV_64FC1,t_matrix);
+
+  //3X3 左相机内参矩阵
+
+  cv::Mat K_l = cv::Mat(3,3,CV_64FC1,_Kl);
+
+  //3X3 右相机内参矩阵
+
+  cv::Mat K_r = cv::Mat(3,3,CV_64FC1,_Kr);
+
+  //4X1 左相机畸变差校正参数,鱼眼畸变
+
+  cv::Mat D_l = cv::Mat(4,1,CV_64FC1,_Dl);
+
+  //4X1 右相机畸变差校正参数,鱼眼畸变
+
+  cv::Mat D_r = cv::Mat(4,1,CV_64FC1,_Dr);
+
+  //3X3 基线校正后左相机旋转矩阵
+
+  cv::Mat R_l = cv::Mat(3,3,CV_64FC1,_Rl);
+
+  //3X3 基线校正后左相机旋转矩阵
+
+  cv::Mat R_r = cv::Mat(3,3,CV_64FC1,_Rr);
+
+  //3X4 基线校正后左相机投影矩阵
+
+  cv::Mat P_l = cv::Mat(3,4,CV_64FC1,_Pl);
+
+  //3X4 基线校正后右相机投影矩阵
+
+  cv::Mat P_r = cv::Mat(3,4,CV_64FC1,_Pr);
+
+  //矫正
+
+  cv::stereoRectify(K_l,D_l,K_r,D_r,cv::Size  (cols_l,rows_l),R,t,R_l,R_r,P_l,P_r,Q,cv::CALIB_ZERO_DISPARITY,0);
+
+  //左相机去鱼眼畸变
+
+  cv::fisheye::initUndistortRectifyMap(K_l,D_l,R_l,P_l.rowRange(0,3).colRange(0,3),cv::Size  (cols_l,rows_l),CV_32FC1,M1l,M2l); 
+
+  //右相机去鱼眼畸变
+
+  cv::fisheye::initUndistortRectifyMap(K_r,D_r,R_r,P_r.rowRange(0,3).colRange(0,3),cv::Size  (cols_r,rows_r),CV_32FC1,M1r,M2r);
+
+编译
+
+.. code-block:: bash
+
+  cd ORB_SLAM2
+  chmod +x build.sh
+  ./build.sh
+
+执行
+
+基于双目的执行
+
+.. code-block:: bash
+
+  ./Examples/Stereo/stereo_euroc Vocabulary/ORBvoc.txt Examples/Stereo/EuRoC.yaml PATH_TO_SEQUENCE/mav0/cam0/data PATH_TO_SEQUENCE/mav0/cam1/data Examples/Stereo/EuRoC_TimeStamps/SEQUENCE.txt
+
+至此，INDEMIND双目视觉惯性模组运行ORB-SLAM工程全部部署完毕，请参考 `算法Demo <https://v.qq.com/x/page/t0815wifet5.html>`_ 

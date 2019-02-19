@@ -8,4 +8,5 @@ SLAM
    Vi-SLAM
    ORB-SLAM2
    VINS
+   DSO-SLAM
 
