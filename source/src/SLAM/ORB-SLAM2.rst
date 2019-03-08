@@ -1,11 +1,11 @@
 ﻿.. _slam_orb_slam2:
 
-`ORB_SLAM2 <https://github.com/raulmur/ORB_SLAM2>`_ 
+`离线运行ORB_SLAM2 <https://github.com/raulmur/ORB_SLAM2>`_ 
 ==============================================================
 
 .. note:: 
 
-  本次Demo基于双目视觉惯性模组离线运行ORB，实时运行Demo待更新
+  本次Demo基于双目视觉惯性模组离线运行ORB
   
 1.下载ORB-SLAM
 ---------------------------------------------------------------
