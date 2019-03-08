@@ -1,16 +1,16 @@
-﻿.. _slam_orb_slam2:
+﻿.. _slam_Vins:
 
-`离线运行ORB_SLAM2 <https://github.com/raulmur/ORB_SLAM2>`_ 
-==============================================================
+`VINS_Mono <https://github.com/heguixiang/Remove_ROS_VINS>`_ 
+=============================================================
 
 .. note:: 
 
-  本次Demo基于双目视觉惯性模组离线运行ORB
+  本次Demo基于双目视觉惯性模组离线运行VINS，实时运行Demo待更新
   
-1.下载ORB-SLAM
+1.下载VINS
 ---------------------------------------------------------------
 
-下载地址：https://github.com/raulmur/ORB_SLAM2
+下载地址：https://github.com/heguixiang/Remove_ROS_VINS
 
 
 2.下载INDEMIND双目视觉惯性模组SDK
@@ -36,7 +36,7 @@ INDEMIND双目视觉惯性模组的SDK为开发者提供了丰富的开发工具
   MRCONFIG config = { 0 };
   config.bSlam = true; //true 开启 SLAM,false 不开启 SLAM
 
-//获取模组标定信息
+获取模组标定信息
 
 .. code-block:: bash
 
@@ -59,6 +59,13 @@ INDEMIND双目视觉惯性模组的SDK为开发者提供了丰富的开发工具
 .. code-block:: bash
 
   ofstream out("./datafile.txt");
+
+  param = pSDK->GetModuleParams();	//查询模组标定信息
+  out<<"param.width: "<<param._width<<std::endl;		//图像宽
+  out<<"param.width: "<<param._height<<std::endl;	//图像高
+  out<<"param.width: "<<param._channel<<std::endl;	//通道数
+
+如上，写入相机内外参
 
 释放资源
 
@@ -98,6 +105,7 @@ INDEMIND双目视觉惯性模组的SDK为开发者提供了丰富的开发工具
 .. warning:: 
 
   使用 Ubuntu 16.04 编译 demo 程序需要使用 GCC5.4 版本,否则可能链接失败。
+
   使用 Ubuntu 18.04 编译 demo 程序需要使用 GCC7.3 版本,否则可能链接失败。
 
 
@@ -121,76 +129,38 @@ TestIndem 和 TestIndem.sh 需要可执行权限。 使用命令 ``chmod 777 Tes
 
   在 Ubuntu 18.04 上使用 GCC7.3 编译 demo 的时候,需要把 demo 里的 CMakeLists.txt 的1604 改成 1804 才能编译成功，编译成功后把 TestIndem 拷贝到 lib/1804 下运行。
 
-4.ORB-SLAM2参数设置及矫正
+4.VINS参数设置及矫正
 ---------------------------------------------------------------
 
-需要更改的相机参数：
+在estimator_node.cpp中添加去畸变命令
 
 .. code-block:: bash
 
-  //双目摄像头之间的相对关系
+  cv::fisheye::initUndistortRectifyMap(K_l,D_l,R_l,P_l.rowRange(0,3).colRange(0,3),cv::Size(cols_l,rows_l),CV_32FC1,M1l,M2l);
 
-  cv::Mat R = cv::Mat(3,3,CV_64FC1,R_matrix);
-  cv::Mat t = cv::Mat(3,1,CV_64FC1,t_matrix);
+将去畸变后，获取到的P_l值传给/home/indemind/SDKbackup/indem/u/vins/src/config/euroc/euroc_config.yaml中的 ``fx、fy、cx和cy`` 。
 
-  //3X3 左相机内参矩阵
+编译前要下载的库
 
-  cv::Mat K_l = cv::Mat(3,3,CV_64FC1,_Kl);
-
-  //3X3 右相机内参矩阵
-
-  cv::Mat K_r = cv::Mat(3,3,CV_64FC1,_Kr);
-
-  //4X1 左相机畸变差校正参数,鱼眼畸变
-
-  cv::Mat D_l = cv::Mat(4,1,CV_64FC1,_Dl);
-
-  //4X1 右相机畸变差校正参数,鱼眼畸变
-
-  cv::Mat D_r = cv::Mat(4,1,CV_64FC1,_Dr);
-
-  //3X3 基线校正后左相机旋转矩阵
-
-  cv::Mat R_l = cv::Mat(3,3,CV_64FC1,_Rl);
-
-  //3X3 基线校正后左相机旋转矩阵
-
-  cv::Mat R_r = cv::Mat(3,3,CV_64FC1,_Rr);
-
-  //3X4 基线校正后左相机投影矩阵
-
-  cv::Mat P_l = cv::Mat(3,4,CV_64FC1,_Pl);
-
-  //3X4 基线校正后右相机投影矩阵
-
-  cv::Mat P_r = cv::Mat(3,4,CV_64FC1,_Pr);
-
-  //矫正
-
-  cv::stereoRectify(K_l,D_l,K_r,D_r,cv::Size  (cols_l,rows_l),R,t,R_l,R_r,P_l,P_r,Q,cv::CALIB_ZERO_DISPARITY,0);
-
-  //左相机去鱼眼畸变
-
-  cv::fisheye::initUndistortRectifyMap(K_l,D_l,R_l,P_l.rowRange(0,3).colRange(0,3),cv::Size  (cols_l,rows_l),CV_32FC1,M1l,M2l); 
-
-  //右相机去鱼眼畸变
-
-  cv::fisheye::initUndistortRectifyMap(K_r,D_r,R_r,P_r.rowRange(0,3).colRange(0,3),cv::Size  (cols_r,rows_r),CV_32FC1,M1r,M2r);
+ 1. Ceres Solver
+ 2. Opencv 3.1
+ 3. Eigen 3.2.0
+ 4. boost
+ 5. Pangolin
 
 编译
 
 .. code-block:: bash
 
-  cd ORB_SLAM2
-  chmod +x build.sh
-  ./build.sh
+  mv Remove_ROS_VINS src
+  ./generate.sh
+
 
 执行
 
-基于双目的执行
-
 .. code-block:: bash
 
-  ./Examples/Stereo/stereo_euroc Vocabulary/ORBvoc.txt Examples/Stereo/EuRoC.yaml PATH_TO_SEQUENCE/mav0/cam0/data PATH_TO_SEQUENCE/mav0/cam1/data Examples/Stereo/EuRoC_TimeStamps/SEQUENCE.txt
+  cd VINS_Workspace
+  ./src/vins_estimator/build/vins_estimator ./src/config/euroc/euroc_config.yaml ./data/mav1/cam0/data ./data/mav1/filename.txt ./data/mav1/imu0/data.csv
 
-至此，INDEMIND双目视觉惯性模组运行ORB-SLAM工程全部部署完毕，请参考 `算法Demo <https://v.qq.com/x/page/t0815wifet5.html>`_ 
+至此，INDEMIND双目视觉惯性模组运行ORB-SLAM工程全部部署完毕，请参考 `算法Demo <https://v.qq.com/x/page/o082495ojpb.html>`_ 

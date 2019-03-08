@@ -15,13 +15,14 @@ ROS SDK安装
 
   下载地址：
   http://wiki.ros.org/lunar/Installation/Ubuntu
+  https://github.com/INDEMIND/SDK-Linux
 
 Ros demo 使用说明
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 下载完解压出以下文件：
  
-解压获得如下文件夹(文件位于Linux SDK 下的SDK-Linux\demo_ros文件夹下)：
+解压获得如下文件夹(文件位于Linux SDK 下的demo_ros文件夹下)：
 
 .. image:: ../../tupian/SDK_35.png
 

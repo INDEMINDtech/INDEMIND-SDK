@@ -3,7 +3,7 @@
 平台支持
 ===================
 
-SDK支持Windows10和Linux（Ubuntu 18.04）平台。
+SDK支持Windows10、Linux1604下Ros以及Linux（Ubuntu 18.04）平台。
 
 .. note:: 
   SDK需要64位操作系统、USB3.0接口。
