@@ -1,6 +1,6 @@
 ﻿.. _firmware:
 
-插件调用
+插件示例
 ==============
 
 .. toctree::
@@ -11,3 +11,4 @@
    chajianfabu
    kaifashili
    kaifaguifan
+   dianyunchajian
