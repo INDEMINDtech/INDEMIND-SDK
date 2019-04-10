@@ -19,3 +19,4 @@ INDEMIND双目视觉惯性模组用户手册
    src/dicengdiaoyong/contents
    src/SLAM/contents
    src/shujufenxi/contents
+   src/gujianshengji/contents

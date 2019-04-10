@@ -17,10 +17,14 @@ pointcloud插件
 .. image:: ../../tupian/SDK_41.png
  
 ▶ windows
+
 将windows下的pointcloud文件夹完整的复制到SDK的plugin文件夹下，即可使用
 
 ▶ ubuntu 16
+
 将ubuntu16下的pointcloud文件夹复制到SDK的plugin文件夹下，然后把libimpc.so复制到与libindem.so同级的目录（或者系统目录等程序能够在运行时加载的位置）下
+
+.. image:: ../../tupian/SDK_42.jpg
 
 使用插件
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
