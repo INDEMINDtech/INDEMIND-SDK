@@ -16,6 +16,10 @@ SDK下载地址：http://indemind.cn/sdk.html
 
 ModuleInfo图像采集软件下载地址：https://github.com/INDEMIND/ModuleInfo_Linux
 
+.. tip:: 
+
+  详细使用见模组信息采集（客户手册）
+
 2.编译执行流程
 ---------------------------------------------------------------
 
@@ -41,13 +45,19 @@ ModuleInfo图像采集软件下载地址：https://github.com/INDEMIND/ModuleInf
 
   sudo apt-get install libsuitesparse-dev
 
+安装 SuiteSparse and CXSparse
+
+.. code-block:: bash
+
+  sudo apt-get install libsuitesparse-dev
+
 编译器
 
 .. warning:: 
 
   使用 Ubuntu 16.04 编译 demo 程序需要使用 GCC5.4 版本,否则可能链接失败。
+  
   使用 Ubuntu 18.04 编译 demo 程序需要使用 GCC7.3 版本,否则可能链接失败。
-
 
 3）SDK编译
 
@@ -69,7 +79,7 @@ TestIndem 和 TestIndem.sh 需要可执行权限。 使用命令 ``chmod 777 Tes
 
   在 Ubuntu 18.04 上使用 GCC7.3 编译 demo 的时候,需要把 demo 里的 CMakeLists.txt 的1604 改成 1804 才能编译成功，编译成功后把 TestIndem 拷贝到 lib/1804 下运行。
 
-最后将1604目录下的headset.yaml拷贝到ORB_SLAM2目录下。
+最后将 ``1604目录`` 下的 ``headset.yaml`` 拷贝到 ``ORB_SLAM2`` 目录下。
 
 5）ORB-SLAM2依赖库编译
 
