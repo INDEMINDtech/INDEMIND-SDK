@@ -43,7 +43,7 @@ ModuleInfo图像采集软件下载地址：https://github.com/INDEMIND/ModuleInf
 
 .. code-block:: bash
 
-  sudo apt-get install libsuitesparse-dev
+  sudo apt-get install libatlas-base-dev
 
 安装 SuiteSparse and CXSparse
 
