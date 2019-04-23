@@ -1,73 +1,27 @@
 ﻿.. _slam_orb_slam2:
 
-`离线运行ORB_SLAM2 <https://github.com/raulmur/ORB_SLAM2>`_ 
+`离线运行ORB_SLAM2 <https://github.com/INDEMINDtech/ORB_SLAM2_general>`_ 
 ==============================================================
 
 .. note:: 
 
   本次Demo基于双目视觉惯性模组离线运行ORB
   
-1.下载ORB-SLAM
+1.下载
 ---------------------------------------------------------------
 
-下载地址：https://github.com/raulmur/ORB_SLAM2
+ORB-SLAM2下载地址：https://github.com/INDEMINDtech/ORB_SLAM2_general
 
+SDK下载地址：http://indemind.cn/sdk.html
 
-2.下载INDEMIND双目视觉惯性模组SDK
----------------------------------------------------------------------------------
+ModuleInfo图像采集软件下载地址：https://github.com/INDEMIND/ModuleInfo_Linux
 
-INDEMIND双目视觉惯性模组的SDK为开发者提供了丰富的开发工具与辅助，省去了开发者对相机的标定、数据同步等开发工作，加速开发进程。因此，我们直接根据自身操作系统直接下载INDEMIND双目视觉惯性模组的SDK即可。
-
-下载地址：http://indemind.cn/sdk.html
-
-3.使用SDK
+2.编译执行流程
 ---------------------------------------------------------------
 
-创建SDK对象
+1）使用ModuleInfo进行数据采集，获得双目和imu数据集，将数据集拷贝到ORB_SLAM2目录下
 
-.. code-block:: bash
-
-  CIMRSDK* pSDK = new CIMRSDK();
-
-设置使用的 SLAM
-
-.. code-block:: bash
-
-  MRCONFIG config = { 0 };
-  config.bSlam = true; //true 开启 SLAM,false 不开启 SLAM
-
-//获取模组标定信息
-
-.. code-block:: bash
-
-  CameraCalibrationParameter param;
-
-获取模组图像数据
-
-.. code-block:: bash
-
-  pSDK->RegistModuleCameraCallback(SdkCameraCallBack,NULL);
-
-获取 SLAM 结果
-
-.. code-block:: bash
-
-  pSDK->RegistModulePoseCallback(sdkSLAMResult,NULL);
-
-将param的参数写入文件中
-
-.. code-block:: bash
-
-  ofstream out("./datafile.txt");
-
-释放资源
-
-.. code-block:: bash
-
-  pSDK->Release();
-  delete pSDK;
-
-编译
+2）SDK依赖库编译
 
 安装 cmake
 
@@ -85,12 +39,6 @@ INDEMIND双目视觉惯性模组的SDK为开发者提供了丰富的开发工具
 
 .. code-block:: bash
 
-  sudo apt-get install libatlas-base-dev
-
-安装 SuiteSparse and CXSparse
-
-.. code-block:: bash
-
   sudo apt-get install libsuitesparse-dev
 
 编译器
@@ -101,7 +49,7 @@ INDEMIND双目视觉惯性模组的SDK为开发者提供了丰富的开发工具
   使用 Ubuntu 18.04 编译 demo 程序需要使用 GCC7.3 版本,否则可能链接失败。
 
 
-编译
+3）SDK编译
 
 .. code-block:: bash
 
@@ -109,7 +57,7 @@ INDEMIND双目视觉惯性模组的SDK为开发者提供了丰富的开发工具
   cmake ..
   make
 
-执行
+4）SDK执行
 
 把刚才编译的可执行文件 ``TestIndem 拷贝到刚才解压 SDK 的lib 目录下的 1604 目录下`` ，在 lib/1604 目录下使用 ``sudo ./TestIndem.sh`` 命令启动程序。
 
@@ -121,63 +69,48 @@ TestIndem 和 TestIndem.sh 需要可执行权限。 使用命令 ``chmod 777 Tes
 
   在 Ubuntu 18.04 上使用 GCC7.3 编译 demo 的时候,需要把 demo 里的 CMakeLists.txt 的1604 改成 1804 才能编译成功，编译成功后把 TestIndem 拷贝到 lib/1804 下运行。
 
-4.ORB-SLAM2参数设置及矫正
----------------------------------------------------------------
+最后将1604目录下的headset.yaml拷贝到ORB_SLAM2目录下。
 
-需要更改的相机参数：
+5）ORB-SLAM2依赖库编译
+
+Pangolin安装
 
 .. code-block:: bash
 
-  //双目摄像头之间的相对关系
+  sudo apt-get install libglew-dev
+  sudo apt-get install cmake
+  sudo apt-get install libboost-dev libboost-thread-dev libboost-filesystem-dev
+  git clone https://github.com/stevenlovegrove/Pangolin.git
+  cd Pangolin
+  mkdir build
+  cd build
+  cmake -DCPP11_NO_BOOST=1 ..
+  make -j
 
-  cv::Mat R = cv::Mat(3,3,CV_64FC1,R_matrix);
-  cv::Mat t = cv::Mat(3,1,CV_64FC1,t_matrix);
+OpenCV安装
 
-  //3X3 左相机内参矩阵
+.. code-block:: bash
 
-  cv::Mat K_l = cv::Mat(3,3,CV_64FC1,_Kl);
+  sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg.dev libtiff4.dev libswscale-dev libjasper-dev
 
-  //3X3 右相机内参矩阵
+https://opencv.org/releases/page/2/网站下 选择3.4.3的Sources，点击下载解压
 
-  cv::Mat K_r = cv::Mat(3,3,CV_64FC1,_Kr);
+.. code-block:: bash
 
-  //4X1 左相机畸变差校正参数,鱼眼畸变
+  mkdir build
+  cd build
+  cmake ..
+  sudo make -j4
+  sudo make install
 
-  cv::Mat D_l = cv::Mat(4,1,CV_64FC1,_Dl);
+Eigen安装
 
-  //4X1 右相机畸变差校正参数,鱼眼畸变
+.. code-block:: bash
 
-  cv::Mat D_r = cv::Mat(4,1,CV_64FC1,_Dr);
+  sudo apt-get install libeigen3-dev
+  sudo updatedb
 
-  //3X3 基线校正后左相机旋转矩阵
-
-  cv::Mat R_l = cv::Mat(3,3,CV_64FC1,_Rl);
-
-  //3X3 基线校正后左相机旋转矩阵
-
-  cv::Mat R_r = cv::Mat(3,3,CV_64FC1,_Rr);
-
-  //3X4 基线校正后左相机投影矩阵
-
-  cv::Mat P_l = cv::Mat(3,4,CV_64FC1,_Pl);
-
-  //3X4 基线校正后右相机投影矩阵
-
-  cv::Mat P_r = cv::Mat(3,4,CV_64FC1,_Pr);
-
-  //矫正
-
-  cv::stereoRectify(K_l,D_l,K_r,D_r,cv::Size  (cols_l,rows_l),R,t,R_l,R_r,P_l,P_r,Q,cv::CALIB_ZERO_DISPARITY,0);
-
-  //左相机去鱼眼畸变
-
-  cv::fisheye::initUndistortRectifyMap(K_l,D_l,R_l,P_l.rowRange(0,3).colRange(0,3),cv::Size  (cols_l,rows_l),CV_32FC1,M1l,M2l); 
-
-  //右相机去鱼眼畸变
-
-  cv::fisheye::initUndistortRectifyMap(K_r,D_r,R_r,P_r.rowRange(0,3).colRange(0,3),cv::Size  (cols_r,rows_r),CV_32FC1,M1r,M2r);
-
-编译
+6) ORB编译
 
 .. code-block:: bash
 
@@ -185,9 +118,7 @@ TestIndem 和 TestIndem.sh 需要可执行权限。 使用命令 ``chmod 777 Tes
   chmod +x build.sh
   ./build.sh
 
-执行
-
-基于双目的执行
+7）执行
 
 .. code-block:: bash
 
