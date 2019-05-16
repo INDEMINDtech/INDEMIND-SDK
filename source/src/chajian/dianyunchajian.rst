@@ -98,3 +98,32 @@ d）配置文件
 
 display参数控制插件内部是否显示深度图，enable参数控制插件内部是否开启算法
 
+编译执行
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. tip:: 
+
+  本插件需安装SDK及其依赖库、Opencv 3.4.3
+
+将Pointcloud插件中Ubuntu 16下pointcloud文件夹拷贝至……SDK/lib/1604/plugin下
+
+并将pointcloud文件夹中libimpc.so文件拷贝至……SDK/lib/1604中
+
+进入……SDK/Demo，打开终端，输入如下命令行
+
+.. code-block:: javascript
+
+  mkdir build
+  cd build
+  cmake ..
+  make
+
+进入……SDK/lib/1604，打开终端，执行
+
+.. code-block:: javascript
+
+  sudo –s
+  sudo chmod 777 *
+  ./TestIndem.sh
+
+即可得到深度及点云图像
